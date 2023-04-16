@@ -1,4 +1,5 @@
 import os
+import random
 import sys
 import logging
 from multiprocessing import freeze_support
@@ -9,7 +10,7 @@ from PyQt5 import uic, QtWebEngineWidgets
 from PyQt5.QtGui import QIcon, QPainter
 from qt_material import apply_stylesheet, QtStyleTools, density
 
-from graph_manager import *
+from data.data_ui_manager import DataUiManager
 from ports import PortManager
 
 if hasattr(Qt, 'AA_ShareOpenGLContexts'):
@@ -47,12 +48,11 @@ extra = {
 
 
 class RuntimeStylesheets(QMainWindow, QtStyleTools):
-    # ----------------------------------------------------------------------
     def __init__(self):
         """Constructor"""
         super().__init__()
-        self.port_manager = None
         self.main = uic.loadUi('main_window.ui', self)
+        self.port_manager = None
 
         try:
             self.main.setWindowTitle(f'STM32上位机-BJUT')
@@ -60,6 +60,7 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
             self.main.window_title = f'STM32上位机-BJUT'
 
         self.custom_styles()
+        self.init_widgets()
 
         self.set_extra(extra)
         self.add_menu_theme(self.main, self.main.menuStyles)
@@ -116,11 +117,15 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
 
         self.port_manager = PortManager(self)
 
-        locate = [[0, 0], [0, 1], [1, 0], [1, 1]]
-        graph_titles = ['加速度角度', '角度', '陀螺仪', '磁场']
-        init_charts(self.graph_tab_right_layout, locate, graph_titles)
+    def init_widgets(self):
+        data_ui_manager = DataUiManager(self)
 
-        self.test_action.triggered.connect(lambda: add_chart_data(charts[0], 1))
+        def rand_add_data():
+            datas = []
+            for i in range(4):
+                datas.append(random.randint(0, 10))
+            data_ui_manager.add_datas(datas)
+        self.test_action.triggered.connect(rand_add_data)
 
 
 T0 = 1000

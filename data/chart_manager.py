@@ -2,7 +2,7 @@
 # @Time    : 2023/4/13 22:41
 # @Author  : XXX
 # @Site    : 
-# @File    : graph_manager.py
+# @File    : chart_manager.py
 # @Software: PyCharm 
 # @Comment :
 import random
@@ -11,15 +11,14 @@ import numpy as np
 from PyQt5.QtChart import QChart, QChartView, QLineSeries, QValueAxis
 from PyQt5.QtCore import QPointF, QMargins, Qt
 from PyQt5.QtGui import QIcon, QPainter
-from main import RuntimeStylesheets
 
 
-charts = []
 charts_x_range = 20
 
 
-def init_charts(layout, locates, titles):
+def init_charts(ui, locates, titles):
     # TODO 折线图示例
+    charts = []
     assert len(locates) == len(titles)
     for lo, title in zip(locates, titles):
 
@@ -35,11 +34,12 @@ def init_charts(layout, locates, titles):
         chart_view = QChartView(chart)
         chart_view.setRenderHint(QPainter.Antialiasing)
         chart.setMargins(QMargins(2, 2, 2, 2))
-        layout.addWidget(chart_view, *lo)
+        ui.graph_tab_right_layout.addWidget(chart_view, *lo)
+    return charts
 
 
 def add_chart_data(chart: QChart, y):
-    y = random.randint(0, 10)
+    # y = random.randint(0, 10)
     s = chart.series()[0]
     x = 0 if len(s.points()) == 0 else s.points()[-1].x() + 1
     x_axis = QValueAxis()
