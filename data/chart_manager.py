@@ -7,10 +7,9 @@
 # @Comment :
 import random
 
-import numpy as np
 from PyQt5.QtChart import QChart, QChartView, QLineSeries, QValueAxis
 from PyQt5.QtCore import QPointF, QMargins, Qt
-from PyQt5.QtGui import QIcon, QPainter
+from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import QGridLayout
 
 charts_x_range = 300

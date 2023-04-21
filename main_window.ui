@@ -1176,7 +1176,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1379,7 +1379,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="data1_label">
             <property name="text">
-             <string>data1</string>
+             <string>加速度</string>
             </property>
            </widget>
           </item>

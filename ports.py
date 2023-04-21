@@ -128,7 +128,11 @@ class PortManager(QObject):
         if is_init:
             self.baud_rate_combo.setCurrentIndex(6)
             self.curr_baud_rate = 115200
-            self.curr_port = new_port_list[0]
+            if len(new_port_list) > 0:
+                self.curr_port = new_port_list[0]
+            else:
+                self.curr_port = None
+                self.com_btn.setEnabled(False)
         if is_init or new_port_list != self.port_list:
             if not is_init and len(new_port_list) > len(self.port_list):
                 new_com = next(iter(set(new_port_list) - set(self.port_list)))
@@ -141,6 +145,10 @@ class PortManager(QObject):
             self.com_combo.clear()
             for com_port in self.port_list:
                 self.com_combo.addItem(com_port)
+            if len(new_port_list) > 0:
+                self.com_btn.setEnabled(True)
+            else:
+                self.com_btn.setEnabled(False)
             # 提示串口意外断开
             if self.open_status == 'opened' and self.curr_port not in self.port_list:
                 self.serialthread.stop()
@@ -151,8 +159,10 @@ class PortManager(QObject):
                 self.open_status = 'closed'
                 self.com_combo.setEnabled(True)
                 self.baud_rate_combo.setEnabled(True)
-                # 回归默认串口，会不会有问题？
-                self.curr_port = self.port_list[0]
+                if len(new_port_list) > 0:
+                    self.curr_port = self.port_list[0]
+                else:
+                    self.curr_port = None
 
     def _set_com_info_label(self, text, to_ui='main', icon=None):
         if to_ui == 'main':
