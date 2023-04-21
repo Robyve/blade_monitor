@@ -13,7 +13,7 @@ from PyQt5.QtCore import QPointF, QMargins, Qt
 from PyQt5.QtGui import QIcon, QPainter
 from PyQt5.QtWidgets import QGridLayout
 
-charts_x_range = 200
+charts_x_range = 300
 
 
 def init_charts(ui, locates, titles):

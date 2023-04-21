@@ -55,7 +55,7 @@ class PortManager(QObject):
 
     def __init__(self, ui):
         super().__init__()
-        self.collect_dtime = 0.2    # 采样频率
+        self.collect_dtime = 0.1    # 采样频率
 
         self.curr_serial = None     # 串口实例
         self.port_list = []
@@ -69,12 +69,16 @@ class PortManager(QObject):
         self.com_btn = ui.com_btn
         self.com_info_label = ui.com_info_label
         self.com_info_icon_label = ui.com_info_icon_label
+        self.com_info_label_new_connect = ui.com_info_label_new_connect
+        self.com_info_icon_label_new_connect = ui.com_info_icon_label_new_connect
 
         self.update_serial_ports(is_init=True)
 
         self.update_timer = QtCore.QTimer()
         self.update_timer.timeout.connect(self.update_serial_ports)
         self.update_timer.start(100)
+
+        self.new_connect_info_timer = QTimer()
 
         self.serialthread = None
         self.serialwork = None
@@ -98,7 +102,7 @@ class PortManager(QObject):
             self.curr_serial = serial.Serial(self.curr_port, self.curr_baud_rate, timeout=60)
 
             self.com_btn.setText('断开')
-            self._set_com_info_label(f'连接到串口: {self.curr_port}', 'ok')
+            self._set_com_info_label(f'连接到串口: {self.curr_port}', 'main', 'ok')
             self.open_status = 'opened'
             self.com_combo.setEnabled(False)
             self.baud_rate_combo.setEnabled(False)
@@ -112,8 +116,7 @@ class PortManager(QObject):
             self.curr_serial.close()
             self.curr_serial = None
             self.com_btn.setText('启动')
-            self.com_info_label.setText(f'')
-            self._set_com_info_label(' ')
+            self._set_com_info_label(' ', 'main')
             self.open_status = 'closed'
             self.com_combo.setEnabled(True)
             self.baud_rate_combo.setEnabled(True)
@@ -127,6 +130,13 @@ class PortManager(QObject):
             self.curr_baud_rate = 115200
             self.curr_port = new_port_list[0]
         if is_init or new_port_list != self.port_list:
+            if not is_init and len(new_port_list) > len(self.port_list):
+                new_com = next(iter(set(new_port_list) - set(self.port_list)))
+                self.new_connect_info_timer.setSingleShot(True)
+                self.new_connect_info_timer.timeout.connect(
+                    lambda: self._set_com_info_label(f'', 'new_connect', ''))
+                self._set_com_info_label(f'新串口{new_com}', 'new_connect', 'info')
+                self.new_connect_info_timer.start(1500)
             self.port_list = new_port_list
             self.com_combo.clear()
             for com_port in self.port_list:
@@ -137,20 +147,28 @@ class PortManager(QObject):
                 self.curr_serial.close()
                 self.curr_serial = None
                 self.com_btn.setText('启动')
-                self._set_com_info_label('与串口的连接意外断开', 'warning')
+                self._set_com_info_label('与串口的连接意外断开', 'main', 'warning')
                 self.open_status = 'closed'
                 self.com_combo.setEnabled(True)
                 self.baud_rate_combo.setEnabled(True)
                 # 回归默认串口，会不会有问题？
                 self.curr_port = self.port_list[0]
 
-    def _set_com_info_label(self, text, icon=None):
-        if icon is None:
-            self.com_info_icon_label.setPixmap(QPixmap(''))
+    def _set_com_info_label(self, text, to_ui='main', icon=None):
+        if to_ui == 'main':
+            icon_label = self.com_info_icon_label
+            info_label = self.com_info_label
+        elif to_ui == 'new_connect':
+            icon_label = self.com_info_icon_label_new_connect
+            info_label = self.com_info_label_new_connect
         else:
-            self.com_info_icon_label.setPixmap(QPixmap(f'icon/{icon}.png'))
-        self.com_info_icon_label.setScaledContents(True)
-        self.com_info_label.setText(text)
+            assert False
+        if icon is None:
+            icon_label.setPixmap(QPixmap(''))
+        else:
+            icon_label.setPixmap(QPixmap(f'icon/{icon}.png'))
+        icon_label.setScaledContents(True)
+        info_label.setText(text)
 
     def handle_data_from_thread(self, data):
         self.data_ready_signal.emit(data)
