@@ -51,6 +51,7 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
     def __init__(self):
         """Constructor"""
         super().__init__()
+        self.data_ui_manager = None
         self.main = uic.loadUi('main_window.ui', self)
         self.port_manager = None
 
@@ -115,17 +116,25 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
             for r in range(self.main.tableWidget_2.row_count):
                 self.main.tableWidget_2.set_row_height(r, 36)
 
-        self.port_manager = PortManager(self)
-
     def init_widgets(self):
-        data_ui_manager = DataUiManager(self)
+        self.port_manager = PortManager(self)
+        self.data_ui_manager = DataUiManager(self, self.port_manager)
 
         def rand_add_data():
             datas = []
             for i in range(4):
-                datas.append(random.randint(0, 10))
-            data_ui_manager.add_datas(datas)
+                datas.append(float(random.randint(0, 100)) / float(random.randint(1, 10)))
+            self.data_ui_manager.add_test_datas(datas)
         self.test_action.triggered.connect(rand_add_data)
+
+        def rand_add_data_2():
+            datas = []
+            for i in range(3):
+                datas.append(float(random.randint(0, 100)) / float(random.randint(1, 10)))
+            self.data_ui_manager.add_3d_datas(0, [0, 1, 2], datas)
+        self.test_action_2.triggered.connect(rand_add_data_2)
+
+
 
 
 T0 = 1000
