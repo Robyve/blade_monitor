@@ -2225,6 +2225,32 @@ p, li { white-space: pre-wrap; }
      <height>24</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuStyles">
+    <property name="title">
+     <string>风格</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuMenu_with_icons">
+    <property name="title">
+     <string>Menu with icons</string>
+    </property>
+    <addaction name="actionsubmenu"/>
+    <addaction name="actionsubmenu_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionsubmenu_4"/>
+    <addaction name="actionsubmenu_3"/>
+    <addaction name="actionSave_all"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menumenu2">
+    <property name="title">
+     <string>Menu2</string>
+    </property>
+    <addaction name="actionSubmenu"/>
+    <addaction name="actionSubmenu_4"/>
+    <addaction name="actionSubmenu_5"/>
+   </widget>
    <widget class="QMenu" name="menumenu">
     <property name="title">
      <string>Menu</string>
@@ -2244,13 +2270,15 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionSubmenu_3"/>
     <addaction name="actiondissabled"/>
    </widget>
-   <widget class="QMenu" name="menumenu2">
+   <widget class="QMenu" name="menuDensity">
     <property name="title">
-     <string>Menu2</string>
+     <string>Density</string>
     </property>
-    <addaction name="actionSubmenu"/>
-    <addaction name="actionSubmenu_4"/>
-    <addaction name="actionSubmenu_5"/>
+   </widget>
+   <widget class="QMenu" name="menuMenu3">
+    <property name="title">
+     <string>Menu4</string>
+    </property>
    </widget>
    <widget class="QMenu" name="menumenu_disabled">
     <property name="enabled">
@@ -2258,34 +2286,6 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="title">
      <string>Menu3 disabled</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuStyles">
-    <property name="title">
-     <string>风格</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuDensity">
-    <property name="title">
-     <string>Density</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuMenu_with_icons">
-    <property name="title">
-     <string>Menu with icons</string>
-    </property>
-    <addaction name="actionsubmenu"/>
-    <addaction name="actionsubmenu_2"/>
-    <addaction name="separator"/>
-    <addaction name="actionsubmenu_4"/>
-    <addaction name="actionsubmenu_3"/>
-    <addaction name="actionSave_all"/>
-    <addaction name="separator"/>
-    <addaction name="actionClose"/>
-   </widget>
-   <widget class="QMenu" name="menuMenu3">
-    <property name="title">
-     <string>Menu4</string>
     </property>
    </widget>
    <addaction name="menuDensity"/>
@@ -2303,7 +2303,7 @@ p, li { white-space: pre-wrap; }
    <property name="minimumSize">
     <size>
      <width>0</width>
-     <height>0</height>
+     <height>16</height>
     </size>
    </property>
    <property name="maximumSize">

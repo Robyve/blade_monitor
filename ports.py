@@ -14,7 +14,7 @@ from PyQt5 import Qt, QtGui, QtCore
 from PyQt5.QtCore import QThread, QObject, QTimer, pyqtSignal
 from PyQt5.QtGui import QPixmap
 
-import data.data_ui_manager as data_ui_manager
+import data_ui.data_ui_manager as data_ui_manager
 
 
 class SerialQThread(QThread):

@@ -10,7 +10,7 @@ from PyQt5.QtCore import pyqtSignal
 import ports
 from ports import SerialQThread
 
-from data.chart_manager import *
+from data_ui.chart_manager import *
 
 
 class DataUiManager:

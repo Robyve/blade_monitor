@@ -10,7 +10,7 @@ from PyQt5 import uic, QtWebEngineWidgets
 from PyQt5.QtGui import QIcon, QPainter
 from qt_material import apply_stylesheet, QtStyleTools, density
 
-from data.data_ui_manager import DataUiManager
+from data_ui.data_ui_manager import DataUiManager
 from ports import PortManager
 
 if hasattr(Qt, 'AA_ShareOpenGLContexts'):
@@ -65,7 +65,6 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
 
         self.set_extra(extra)
         self.add_menu_theme(self.main, self.main.menuStyles)
-        self.add_menu_density(self.main, self.main.menuDensity)
         # self.show_dock_theme(self.main)
 
         logo = QIcon("qt_material:/logo/logo.svg")
