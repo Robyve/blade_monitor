@@ -1176,7 +1176,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1598,11 +1598,11 @@
       </widget>
       <widget class="QWidget" name="graph_tab_right">
        <attribute name="title">
-        <string>图表</string>
+        <string>时域</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_23">
-        <item row="1" column="0">
-         <widget class="QScrollArea" name="graph_tab_right_scrollArea">
+       <layout class="QVBoxLayout" name="verticalLayout_12">
+        <item>
+         <widget class="QScrollArea" name="graph_tab_time_scrollArea">
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOn</enum>
           </property>
@@ -1610,6 +1610,33 @@
            <bool>true</bool>
           </property>
           <widget class="QWidget" name="graph_tab_right_layout">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>543</width>
+             <height>368</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>频域</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_13">
+        <item>
+         <widget class="QScrollArea" name="graph_tab_feq_scrollArea">
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="graph_tab_right_layout_2">
            <property name="geometry">
             <rect>
              <x>0</x>

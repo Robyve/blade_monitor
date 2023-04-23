@@ -65,6 +65,7 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
 
         self.set_extra(extra)
         self.add_menu_theme(self.main, self.main.menuStyles)
+        self.add_menu_density(self.main, self.main.menuDensity)
         # self.show_dock_theme(self.main)
 
         logo = QIcon("qt_material:/logo/logo.svg")
@@ -124,16 +125,19 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
             for i in range(4):
                 datas.append(float(random.randint(0, 100)) / float(random.randint(1, 10)))
             self.data_ui_manager.add_test_datas(datas)
-        self.test_action.triggered.connect(rand_add_data)
+        # self.test_action.triggered.connect(rand_add_data)
 
         def rand_add_data_2():
-            datas = []
-            for i in range(3):
-                datas.append(float(random.randint(0, 100)) / float(random.randint(1, 10)))
-            self.data_ui_manager.add_3d_datas(0, [0, 1, 2], datas)
-        self.test_action_2.triggered.connect(rand_add_data_2)
-
-
+            datas = ''
+            for i in range(random.randint(1, 3)):
+                for j in range(3):
+                    datas += '$' if j == 0 else ' '
+                    datas += str(float(random.randint(3, 300)) / float(random.randint(7, 50)))
+            self.data_ui_manager.handle_port_data(datas)
+        # self.test_action_2.triggered.connect(rand_add_data_2)
+        self.test_timer = QTimer()
+        self.test_timer.start(150)
+        self.test_timer.timeout.connect(rand_add_data_2)
 
 
 T0 = 1000
