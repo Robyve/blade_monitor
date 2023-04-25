@@ -4,6 +4,7 @@ import sys
 import logging
 from multiprocessing import freeze_support
 
+import numpy as np
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.QtCore import QTimer, Qt, QCoreApplication
 from PyQt5 import uic, QtWebEngineWidgets
@@ -127,17 +128,29 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
             self.data_ui_manager.add_test_datas(datas)
         # self.test_action.triggered.connect(rand_add_data)
 
+        # 生成具有一定周期性的随机序列
+        self.t = 0
+
         def rand_add_data_2():
+            # 设定随机序列的参数
+            freq_list = [1250, 500, 300, 200]
+            a_list = [9, 5, 3, 8]
             datas = ''
             for i in range(random.randint(1, 3)):
                 for j in range(3):
                     datas += '$' if j == 0 else ' '
-                    datas += str(float(random.randint(3, 300)) / float(random.randint(7, 50)))
+                    # datas += str(float(random.randint(3, 300)) / float(random.randint(7, 50)))
+                    datas_f = 0.
+                    for a, f in zip(a_list, freq_list):
+                        datas_f += a * np.sin(2 * f * self.t)
+                    datas_f += float(0.1 * random.randint(-10, 10)) * np.mean(a_list) * 0.1   # 噪声项
+                    datas += str(datas_f)
+                    self.t += 1e-4
             self.data_ui_manager.handle_port_data(datas)
+        # self.test_timer = QTimer()
+        # self.test_timer.start(1)
         # self.test_action_2.triggered.connect(rand_add_data_2)
-        self.test_timer = QTimer()
-        self.test_timer.start(150)
-        self.test_timer.timeout.connect(rand_add_data_2)
+        # self.test_timer.timeout.connect(rand_add_data_2)
 
 
 T0 = 1000

@@ -7,10 +7,12 @@
 # @Comment :
 import random
 
+import numpy as np
 from PyQt5.QtChart import QChart, QChartView, QLineSeries
 from PyQt5.QtCore import QPointF, QMargins, Qt
 from PyQt5.QtGui import QPainter, QPen, QBrush, QColor
 from PyQt5.QtWidgets import QSizePolicy, QWidget, QVBoxLayout
+from scipy.signal import find_peaks
 
 charts_x_range = 100
 charts_min_height = 300
@@ -39,7 +41,7 @@ def init_charts(ui, locates, titles):
             # 创建图表视图并设置图表
             chart_view = QChartView(chart)
             chart_view.setRenderHint(QPainter.Antialiasing)
-            chart.setMargins(QMargins(0, 0, 0, 0))
+            chart.setMargins(QMargins(2, 0, 2, 0))
             chart.setMinimumHeight(charts_min_height)
             layout.addWidget(chart_view)
             chart_group.append(chart)
@@ -51,6 +53,47 @@ def init_charts(ui, locates, titles):
         charts_list.append(chart_group)
 
     return charts_list
+
+
+def clear_chart_data(chart: QChart):
+    s = chart.series()[0]
+    s.clear()
+    x_axis = chart.axisX()
+    x_axis.setRange(0, charts_x_range)
+    y_axis = chart.axisY()
+    y_axis.setRange(-1., 1.)
+
+
+def set_chart_datas(chart: QChart, x_list, y_list, axis_range_mode=None):
+    s = chart.series()[0]
+    s.clear()
+    x_axis_max = 0.
+    x_axis_min = 0.
+    y_axis_max_idx = 0
+    y_axis_max = 1.
+    y_axis_min = -1.
+    for x, y in zip(x_list, y_list):
+        if x > x_axis_max:
+            x_axis_max = x
+        elif x < x_axis_min:
+            x_axis_min = x
+        if y > y_axis_max:
+            y_axis_max_idx = x
+            y_axis_max = y
+        elif y < y_axis_min:
+            y_axis_min = y
+        s.append(QPointF(x, y))
+    if axis_range_mode is None:
+        chart.axisX().setRange(x_axis_min, x_axis_max)
+        chart.axisY().setRange(y_axis_min, y_axis_max)
+    elif axis_range_mode == 'x_0_symmetry':
+        x = max(abs(x_axis_min), abs(x_axis_max))
+        chart.axisX().setRange(-x, x)
+        chart.axisY().setRange(y_axis_min, y_axis_max)
+    peak_idxs = find_peaks(y_list, height=0.05*(y_axis_max - y_axis_min))[0]
+    # for idx in peak_idxs:
+    #     print(x_list[idx], end=' ')
+    # print('')
 
 
 def add_single_chart_data(chart: QChart, y):
@@ -71,7 +114,6 @@ def add_single_chart_data(chart: QChart, y):
         elif p.y() < y_axis_min:
             y_axis_min = p.y() - 1.
     y_axis.setRange(y_axis_min, y_axis_max)
-
     # red_pen = QPen(QColor(255, 0, 0))
     # red_brush = QBrush(QColor(255, 0, 0))
     # blue_pen = QPen(QColor(0, 0, 255))
