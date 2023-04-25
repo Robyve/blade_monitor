@@ -137,11 +137,11 @@ class DataUiManager:
         if data_list is None:
             return
         # 到此数据应该是清洗过的
-        # self.data_buffer.extend(data_list)
+        self.data_buffer.extend(data_list)
         for d in data_list:
             self.add_3d_datas(0, self.charts_time, [0, 1, 2], d)
-        # if len(self.data_buffer) > self.fft_collect_range:
-        #     self.calc_fft(self.data_buffer[len(self.data_buffer)-self.fft_collect_range:])
+        if len(self.data_buffer) > self.fft_collect_range:
+            self.calc_fft(self.data_buffer[len(self.data_buffer)-self.fft_collect_range:])
         # TODO 优化缓存清理
-        # if len(self.data_buffer) > 400:
-        #     self.data_buffer = self.data_buffer[-self.fft_collect_range:]
+        if len(self.data_buffer) > 400:
+            self.data_buffer = self.data_buffer[-self.fft_collect_range:]

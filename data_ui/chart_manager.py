@@ -8,7 +8,7 @@
 import random
 
 import numpy as np
-from PyQt5.QtChart import QChart, QChartView, QLineSeries
+from PyQt5.QtChart import QChart, QChartView, QLineSeries, QValueAxis
 from PyQt5.QtCore import QPointF, QMargins, Qt
 from PyQt5.QtGui import QPainter, QPen, QBrush, QColor
 from PyQt5.QtWidgets import QSizePolicy, QWidget, QVBoxLayout
@@ -97,29 +97,41 @@ def set_chart_datas(chart: QChart, x_list, y_list, axis_range_mode=None):
 
 
 def add_single_chart_data(chart: QChart, y):
+    """
+    似乎重绘坐标轴比调整坐标轴性能更好，很奇怪
+    :param chart:
+    :param y:
+    :return:
+    """
     s = chart.series()[0]
+    x_axis_max = 0
+    x_axis_min = charts_x_range
     x = 0 if len(s.points()) == 0 else s.points()[-1].x() + 1
-    x_axis = chart.axisX()
-    if x < charts_x_range:
-        x_axis.setRange(0, charts_x_range)
-    else:
-        x_axis.setRange(x + 1 - charts_x_range, x+1)
+    if x >= charts_x_range:
+        x_axis_min = x + 1 - charts_x_range
+        x_axis_max = x + 1
         s.remove(0)
-    y_axis = chart.axisY()
+
     y_axis_max = 1.
     y_axis_min = -1.
     for p in s.points():
         if p.y() > y_axis_max:
-            y_axis_max = p.y() + 1.
+            y_axis_max = p.y()
         elif p.y() < y_axis_min:
-            y_axis_min = p.y() - 1.
-    y_axis.setRange(y_axis_min, y_axis_max)
-    # red_pen = QPen(QColor(255, 0, 0))
-    # red_brush = QBrush(QColor(255, 0, 0))
-    # blue_pen = QPen(QColor(0, 0, 255))
-    # blue_brush = QBrush(QColor(0, 0, 255))
-    # if y > 20.:
-    #     s.setPen(red_pen)
-    # else:
-    #     s.setPen(blue_pen)
+            y_axis_min = p.y()
     s.append(QPointF(x, y))
+    _reprint_chart_axis(chart, x_axis_min, x_axis_max, y_axis_min, y_axis_max)
+
+
+def _reprint_chart_axis(chart, x_min, x_max, y_min, y_max):
+    x_axis = QValueAxis()
+    y_axis = QValueAxis()
+    x_axis.setRange(x_min, x_max)
+    y_axis.setRange(y_min, y_max)
+    chart.removeAxis(chart.axisX())
+    chart.addAxis(x_axis, Qt.AlignBottom)
+    chart.removeAxis(chart.axisY())
+    chart.addAxis(y_axis, Qt.AlignLeft)
+    s = chart.series()[0]
+    s.attachAxis(chart.axisX())
+    s.attachAxis(chart.axisY())
