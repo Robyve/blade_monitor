@@ -43,7 +43,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tab_down">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <property name="usesScrollButtons">
            <bool>true</bool>
@@ -1665,7 +1665,7 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QTabWidget" name="left_tab">
+     <widget class="QTabWidget" name="tab_left">
       <property name="maximumSize">
        <size>
         <width>250</width>
@@ -1679,7 +1679,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="com_tab">
        <attribute name="title">
@@ -1902,10 +1902,10 @@
       </widget>
       <widget class="QWidget" name="tab_12">
        <attribute name="title">
-        <string>Long Page Name</string>
+        <string>数据</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_39">
-        <item row="0" column="0" colspan="2">
+       <layout class="QVBoxLayout" name="verticalLayout_14">
+        <item>
          <widget class="QGroupBox" name="groupBox_6">
           <property name="title">
            <string>Buttons</string>
@@ -1917,6 +1917,25 @@
            <string>fill_background</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_38">
+           <item row="0" column="2">
+            <widget class="QPushButton" name="pushButton_10">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Disabled</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="0">
             <widget class="QPushButton" name="pushButton_8">
              <property name="toolTip">
@@ -1940,71 +1959,7 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="2">
-            <widget class="QPushButton" name="pushButton_10">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Disabled</string>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <property name="flat">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_24">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Disable checked</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="flat">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="pushButton_25">
-             <property name="text">
-              <string>Flat</string>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QPushButton" name="pushButton_26">
-             <property name="text">
-              <string>Flat checkeable</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
             <widget class="QPushButton" name="pushButton_27">
              <property name="enabled">
               <bool>false</bool>
@@ -2020,81 +1975,7 @@
           </layout>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QGroupBox" name="groupBox_5">
-          <property name="title">
-           <string>Radio</string>
-          </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-          <property name="class" stdset="0">
-           <string>fill_background</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_37">
-           <item row="3" column="0">
-            <widget class="QRadioButton" name="radioButton_9">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>RadioButton</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QRadioButton" name="radioButton_10">
-             <property name="text">
-              <string>RadioButton</string>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QRadioButton" name="radioButton_11">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>RadioButton</string>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <spacer name="verticalSpacer_8">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="0" column="0">
-            <widget class="QRadioButton" name="radioButton_12">
-             <property name="text">
-              <string>RadioButton</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="autoExclusive">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="1">
+        <item>
          <widget class="QGroupBox" name="groupBox_4">
           <property name="title">
            <string>Check</string>
@@ -2106,16 +1987,6 @@
            <string>fill_background</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_36">
-           <item row="3" column="0">
-            <widget class="QCheckBox" name="checkBox_9">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>CheckBox</string>
-             </property>
-            </widget>
-           </item>
            <item row="4" column="0">
             <spacer name="verticalSpacer_7">
              <property name="orientation">
@@ -2129,16 +2000,13 @@
              </property>
             </spacer>
            </item>
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="checkBox_10">
+           <item row="3" column="0">
+            <widget class="QCheckBox" name="checkBox_9">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>CheckBox</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="tristate">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -2162,6 +2030,26 @@
              </property>
              <property name="checked">
               <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="checkBox_10">
+             <property name="text">
+              <string>CheckBox</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="tristate">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string/>
              </property>
             </widget>
            </item>
@@ -2220,7 +2108,7 @@
      <item row="0" column="0">
       <widget class="QTextEdit" name="textEdit">
        <property name="markdown">
-        <string>欢迎使用STM32上位机
+        <string>欢迎使用上位机
 
 </string>
        </property>
@@ -2229,7 +2117,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;欢迎使用STM32上位机&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:6px; margin-bottom:6px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;欢迎使用上位机&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
@@ -2603,7 +2491,7 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <tabstops>
-  <tabstop>left_tab</tabstop>
+  <tabstop>tab_left</tabstop>
   <tabstop>groupBox_3</tabstop>
   <tabstop>checkBox</tabstop>
   <tabstop>tabWidget_3</tabstop>
@@ -2621,14 +2509,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>pushButton_8</tabstop>
   <tabstop>pushButton_9</tabstop>
   <tabstop>pushButton_10</tabstop>
-  <tabstop>pushButton_24</tabstop>
-  <tabstop>pushButton_25</tabstop>
-  <tabstop>pushButton_26</tabstop>
   <tabstop>pushButton_27</tabstop>
-  <tabstop>radioButton_12</tabstop>
-  <tabstop>radioButton_10</tabstop>
-  <tabstop>radioButton_11</tabstop>
-  <tabstop>radioButton_9</tabstop>
   <tabstop>checkBox_10</tabstop>
   <tabstop>checkBox_11</tabstop>
   <tabstop>checkBox_12</tabstop>

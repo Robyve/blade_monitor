@@ -99,29 +99,13 @@ class DataUiManager:
                 return
         return data_list
 
-    def calc_fft_old(self, data_list):
-        # fft
-        t_range = min(100, len(self.data_buffer))
+    def calc_fft(self, signal):
         # TODO fft采样范围
-        if t_range > 10:
-            t = np.linspace(0, 1, t_range, endpoint=False)
-            signal = [d[0] for d in self.data_buffer][max(len(self.data_buffer) - 100, 0):len(self.data_buffer)]
-            freqs = np.fft.fftfreq(t_range, t[1] - t[0])
-            fft_result = np.fft.fft(signal)
-            cut_idx = len(freqs) // 2 + len(freqs) % 2  # 使fft变为升序
-            freqs = np.concatenate((freqs[cut_idx:], freqs[:cut_idx]))
-            fft_result = np.concatenate((fft_result[cut_idx:], fft_result[:cut_idx]))
-            set_chart_datas(self.charts_freq[0], freqs, np.abs(fft_result), 'x_0_symmetry')
-
-    def calc_fft(self, data_list):
-        # TODO fft采样范围
-        signal = [d[0] for d in data_list]
-        # signal = np.sin(np.linspace(0, 2 * np.pi, 100))
         n = len(signal)
         Fs = 1. / 1e-2  # 采样频率，TODO 统一
-        fft_result = np.fft.rfft(signal)
+        fft_result = np.abs(np.fft.rfft(signal))
         freqs = np.fft.rfftfreq(n, d=1. / Fs)
-        set_chart_datas(self.charts_freq[0], freqs, np.abs(fft_result))
+        return freqs, fft_result
 
     def handle_port_data(self, data: str):
         # data_list = self.convert_data_from_port(data)
@@ -141,7 +125,10 @@ class DataUiManager:
         for d in data_list:
             self.add_3d_datas(0, self.charts_time, [0, 1, 2], d)
         if len(self.data_buffer) > self.fft_collect_range:
-            self.calc_fft(self.data_buffer[len(self.data_buffer)-self.fft_collect_range:])
+            for i in range(0, 3):
+                signal = [d[i] for d in self.data_buffer[len(self.data_buffer)-self.fft_collect_range:]]
+                fft_x, fft_y = self.calc_fft(signal)
+                set_chart_datas(self.charts_freq[i], fft_x, fft_y)
         # TODO 优化缓存清理
         if len(self.data_buffer) > 400:
             self.data_buffer = self.data_buffer[-self.fft_collect_range:]
