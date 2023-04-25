@@ -6,11 +6,23 @@
 # @Software: PyCharm 
 # @Comment :
 import numpy as np
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtCore import pyqtSignal, QThread
 
 import ports
 
 from data_ui.chart_manager import *
+
+
+class FftQThread(QThread):
+    def __init__(self, chart_freq, data):
+        super().__init__()
+        self.chart_freq = chart_freq
+        self.data = data
+
+    def run(self):
+        signal = self.data
+        fft_x, fft_y = DataUiManager.calc_fft(signal)
+        set_chart_datas(self.chart_freq, fft_x, fft_y)
 
 
 class DataUiManager:
@@ -20,7 +32,6 @@ class DataUiManager:
         self.FFT_COLLECT_RANGE = 200  # fft采样范围，属于少于该范围不进行fft
         self.data_buffer = np.empty((0, 3))
         self.port_manager = port_manager
-        self.chart_titles = ['加速度X', '加速度Y', '加速度Z']
         self.ui = ui
         self.data_labels_ui = [
             ui.data1_label,
@@ -34,27 +45,49 @@ class DataUiManager:
             [ui.x3_lcd, ui.y3_lcd, ui.z3_lcd],
             [ui.x4_lcd, ui.y4_lcd, ui.z4_lcd],
         ]
-        self.graph_locate = [
-            [0, 0], [1, 0], [2, 0]
-        ]
-        self.charts_time, self.charts_freq = init_charts(ui, self.graph_locate, self.chart_titles)
+        self.charts_time = None
+        self.charts_freq = None
 
         self.data_recived_from_ports_signal = pyqtSignal(str)
         self.port_manager.data_ready_signal.connect(self.handle_port_data)
 
+        self.ui_label_list_static = [
+                (ui.data1_label, '加速度'),
+                (ui.data2_label, '角速度'),
+            ]
         self.ui_dict_list = [
-            {'lcd': (0, 0),
-             'chart_time': 0,
-             'chart_freq': 0,
-             },
-            {'lcd': (0, 1),
-             'chart_time': 1,
-             'chart_freq': 1,
-             },
-            {'lcd': (0, 2),
-             'chart_time': 2,
-             'chart_freq': 2,
-             },
+            {
+                'data_name': '加速度X',
+                'lcd': (0, 0),
+                'chart_time': 0,
+                'chart_time_locate': [0, 0],
+                'chart_freq': 0,
+                'chart_freq_locate': [0, 0],
+            },
+            {
+                'data_name': '加速度Y',
+                'lcd': (0, 1),
+                'chart_time': 1,
+                'chart_time_locate': [1, 0],
+                'chart_freq': 1,
+                'chart_freq_locate': [1, 0],
+            },
+            {
+                'data_name': '加速度Z',
+                'lcd': (0, 2),
+                'chart_time': 2,
+                'chart_time_locate': [2, 0],
+                'chart_freq': 2,
+                'chart_freq_locate': [2, 0],
+            },
+            # {
+            #     'data_name': '角速度X',
+            #     'lcd': (1, 0),
+            #     'chart_time': 3,
+            #     'chart_time_locate': [3, 0],
+            #     'chart_freq': 3,
+            #     'chart_freq_locate': [3, 0],
+            # },
         ]
         self._ui_bounder = []
         self.bound_data_and_ui()
@@ -64,13 +97,35 @@ class DataUiManager:
         绑定数据和对应的ui控件
         :return:
         """
+        for label_ui, label_name in self.ui_label_list_static:
+            label_ui.setText(label_name)
         self._ui_bounder.clear()
-        for ud in self.ui_dict_list:
+        chart_time_locate = []
+        chart_time_names = []
+        chart_freq_locate = []
+        chart_freq_names = []
+        for i, ud in enumerate(self.ui_dict_list):
             ls = [ud.get('lcd'),
                   ud.get('chart_time'),
                   ud.get('chart_freq'),
                   ]
+            if ud.get('chart_time') is not None:
+                c = ud.get('chart_time_locate')
+                assert c is not None
+                chart_time_locate.append(c)
+                n = ud.get('data_name')
+                assert n is not None
+                chart_time_names.append(n)
+            if ud.get('chart_freq') is not None:
+                c = ud.get('chart_freq_locate')
+                assert c is not None
+                chart_freq_locate.append(c)
+                n = ud.get('data_name')
+                assert n is not None
+                chart_freq_names.append(n)
             self._ui_bounder.append(ls)
+        self.charts_time = init_charts(self.ui.graph_tab_time_scrollArea, chart_time_locate, chart_time_names)
+        self.charts_freq = init_charts(self.ui.graph_tab_freq_scrollArea, chart_freq_locate, chart_freq_names)
 
     def add_datas(self, datas: list, end_of_group):
         """
@@ -79,7 +134,6 @@ class DataUiManager:
         :param end_of_group: 是否是一次串口读取中的最后一组数据，如果是，进行额外的耗时操作
         :return:
         """
-        # TODO 可以试试lambda
         i = 0
         for d, uis in zip(datas, self._ui_bounder):
             for j, ui_info in enumerate(uis):
@@ -143,7 +197,7 @@ class DataUiManager:
         data_list = []
         for s in temp_list:
             s = s.split(' ')
-            if len(s) == 3:
+            if len(s) == 3:     # TODO 要删
                 data_list.append(s)
         for i in range(len(data_list)):
             data_list[i] = list(map(float, data_list[i]))

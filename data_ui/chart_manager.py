@@ -18,41 +18,34 @@ charts_x_range = 100
 charts_min_height = 300
 
 
-def init_charts(ui, locates, titles):
-    charts_list = []
+def init_charts(scroll_area, locates, titles):
     assert len(locates) == len(titles)
-    scroll_area_list = [
-        ui.graph_tab_time_scrollArea, 
-        ui.graph_tab_feq_scrollArea
-    ]
-    for scroll_area in scroll_area_list:
-        chart_group = []
-        # 创建容器，用于容纳所有的 chart_view
-        container = QWidget(scroll_area)
-        layout = QVBoxLayout(container)
-        for lo, title in zip(locates, titles):
-            series = QLineSeries()
-            # 创建图表并添加系列
-            chart = QChart()
-            chart.legend().hide()
-            chart.addSeries(series)
-            chart.createDefaultAxes()
-            chart.setTitle(title)
-            # 创建图表视图并设置图表
-            chart_view = QChartView(chart)
-            chart_view.setRenderHint(QPainter.Antialiasing)
-            chart.setMargins(QMargins(2, 0, 2, 0))
-            chart.setMinimumHeight(charts_min_height)
-            layout.addWidget(chart_view)
-            chart_group.append(chart)
+    chart_group = []
+    # 创建容器，用于容纳所有的 chart_view
+    container = QWidget(scroll_area)
+    layout = QVBoxLayout(container)
+    for lo, title in zip(locates, titles):
+        series = QLineSeries()
+        # 创建图表并添加系列
+        chart = QChart()
+        chart.legend().hide()
+        chart.addSeries(series)
+        chart.createDefaultAxes()
+        chart.setTitle(title)
+        # 创建图表视图并设置图表
+        chart_view = QChartView(chart)
+        chart_view.setRenderHint(QPainter.Antialiasing)
+        chart.setMargins(QMargins(2, 0, 2, 0))
+        chart.setMinimumHeight(charts_min_height)
+        layout.addWidget(chart_view)
+        chart_group.append(chart)
 
         scroll_area.setWidget(container)
         container.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         scroll_area.setWidgetResizable(True)
         container.adjustSize()
-        charts_list.append(chart_group)
 
-    return charts_list
+    return chart_group
 
 
 def clear_chart_data(chart: QChart):
