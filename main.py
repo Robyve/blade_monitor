@@ -121,15 +121,14 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
         self.port_manager = PortManager(self)
         self.data_ui_manager = DataUiManager(self, self.port_manager)
 
-        def rand_add_data():
-            datas = []
-            for i in range(4):
-                datas.append(float(random.randint(0, 100)) / float(random.randint(1, 10)))
-            self.data_ui_manager.add_test_datas(datas)
-        # self.test_action.triggered.connect(rand_add_data)
-
         # 生成具有一定周期性的随机序列
         self.t = 0
+
+        def test_port():
+            self.port_manager.send_hex_message('77 03 01 02 03')
+
+        self.test_action.triggered.connect(test_port)
+
 
         def rand_add_data_2():
             # 设定随机序列的参数

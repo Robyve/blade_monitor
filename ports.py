@@ -164,6 +164,13 @@ class PortManager(QObject):
                 else:
                     self.curr_port = None
 
+    def send_hex_message(self, message: str):
+        # TODO 发送功能待完善
+        if self.curr_serial and self.curr_serial.isOpen():
+            message = bytes.fromhex(message)
+            self.curr_serial.write(message)
+            print(f'send to port: {message}')
+
     def _set_com_info_label(self, text, to_ui='main', icon=None):
         if to_ui == 'main':
             icon_label = self.com_info_icon_label
