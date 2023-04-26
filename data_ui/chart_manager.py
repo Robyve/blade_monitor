@@ -57,7 +57,7 @@ def clear_chart_data(chart: QChart):
     y_axis.setRange(-1., 1.)
 
 
-def set_chart_datas(chart: QChart, x_list, y_list, axis_range_mode=None):
+def set_chart_datas(chart: QChart, x_list, y_list):
     s = chart.series()[0]
     s.clear()
     x_axis_max = 0.
@@ -76,13 +76,8 @@ def set_chart_datas(chart: QChart, x_list, y_list, axis_range_mode=None):
         elif y < y_axis_min:
             y_axis_min = y
         s.append(QPointF(x, y))
-    if axis_range_mode is None:
-        chart.axisX().setRange(x_axis_min, x_axis_max)
-        chart.axisY().setRange(y_axis_min, y_axis_max)
-    elif axis_range_mode == 'x_0_symmetry':
-        x = max(abs(x_axis_min), abs(x_axis_max))
-        chart.axisX().setRange(-x, x)
-        chart.axisY().setRange(y_axis_min, y_axis_max)
+    chart.axisX().setRange(x_axis_min, x_axis_max)
+    chart.axisY().setRange(y_axis_min, y_axis_max)
     # peak_idxs = find_peaks(y_list, height=0.05*(y_axis_max - y_axis_min))[0]
     # for idx in peak_idxs:
     #     print(x_list[idx], end=' ')

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1222</width>
-    <height>842</height>
+    <height>836</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <enum>QLayout::SetDefaultConstraint</enum>
     </property>
     <item row="1" column="0" colspan="3">
-     <widget class="QTabWidget" name="tabWidget_3">
+     <widget class="QTabWidget" name="tab_down_2">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -43,122 +43,73 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tab_down">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <property name="usesScrollButtons">
            <bool>true</bool>
           </property>
           <property name="tabsClosable">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <widget class="QWidget" name="com_tab_down">
            <attribute name="title">
-            <string>串口</string>
+            <string>1</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_6">
-            <item row="0" column="3">
-             <widget class="QTableWidget" name="tableWidget">
-              <property name="alternatingRowColors">
+            <item row="0" column="2">
+             <widget class="QListWidget" name="listWidget_2">
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>64</width>
+                <height>64</height>
+               </size>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="movement">
+               <enum>QListView::Static</enum>
+              </property>
+              <property name="flow">
+               <enum>QListView::TopToBottom</enum>
+              </property>
+              <property name="isWrapping" stdset="0">
+               <bool>false</bool>
+              </property>
+              <property name="resizeMode">
+               <enum>QListView::Fixed</enum>
+              </property>
+              <property name="layoutMode">
+               <enum>QListView::Batched</enum>
+              </property>
+              <property name="spacing">
+               <number>15</number>
+              </property>
+              <property name="viewMode">
+               <enum>QListView::ListMode</enum>
+              </property>
+              <property name="selectionRectVisible">
+               <bool>false</bool>
+              </property>
+              <property name="sortingEnabled">
                <bool>true</bool>
               </property>
-              <attribute name="horizontalHeaderStretchLastSection">
-               <bool>true</bool>
-              </attribute>
-              <row>
+              <item>
                <property name="text">
-                <string>Row-1</string>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="media-playback-start">
-                 <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string>Row-3</string>
-               </property>
-              </row>
-              <column>
-               <property name="text">
-                <string>Duration</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Datetime</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Name</string>
-               </property>
-              </column>
-              <item row="0" column="0">
-               <property name="text">
-                <string>00:05:02</string>
-               </property>
-               <property name="checkState">
-                <enum>Checked</enum>
+                <string>New Item</string>
                </property>
               </item>
-              <item row="0" column="1">
+              <item>
                <property name="text">
-                <string>2020-04-27 17:31:34</string>
+                <string>New Item</string>
                </property>
               </item>
-              <item row="0" column="2">
+              <item>
                <property name="text">
-                <string>Unamed-1</string>
-               </property>
-              </item>
-              <item row="1" column="0">
-               <property name="text">
-                <string>00:01:02</string>
-               </property>
-               <property name="checkState">
-                <enum>Checked</enum>
-               </property>
-              </item>
-              <item row="1" column="1">
-               <property name="text">
-                <string>2020-04-27 17:31:34</string>
-               </property>
-              </item>
-              <item row="1" column="2">
-               <property name="text">
-                <string>Unamed-2</string>
-               </property>
-              </item>
-              <item row="2" column="0">
-               <property name="text">
-                <string>00:07:02</string>
-               </property>
-               <property name="checkState">
-                <enum>Checked</enum>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-               </property>
-              </item>
-              <item row="2" column="1">
-               <property name="text">
-                <string>2020-04-27 17:31:34</string>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-               </property>
-              </item>
-              <item row="2" column="2">
-               <property name="text">
-                <string>Unamed-3</string>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+                <string>New Item</string>
                </property>
               </item>
              </widget>
@@ -394,63 +345,122 @@
               </widget>
              </widget>
             </item>
-            <item row="0" column="2">
-             <widget class="QListWidget" name="listWidget_2">
-              <property name="selectionBehavior">
-               <enum>QAbstractItemView::SelectRows</enum>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>64</width>
-                <height>64</height>
-               </size>
-              </property>
-              <property name="verticalScrollMode">
-               <enum>QAbstractItemView::ScrollPerPixel</enum>
-              </property>
-              <property name="movement">
-               <enum>QListView::Static</enum>
-              </property>
-              <property name="flow">
-               <enum>QListView::TopToBottom</enum>
-              </property>
-              <property name="isWrapping" stdset="0">
-               <bool>false</bool>
-              </property>
-              <property name="resizeMode">
-               <enum>QListView::Fixed</enum>
-              </property>
-              <property name="layoutMode">
-               <enum>QListView::Batched</enum>
-              </property>
-              <property name="spacing">
-               <number>15</number>
-              </property>
-              <property name="viewMode">
-               <enum>QListView::ListMode</enum>
-              </property>
-              <property name="selectionRectVisible">
-               <bool>false</bool>
-              </property>
-              <property name="sortingEnabled">
+            <item row="0" column="3">
+             <widget class="QTableWidget" name="tableWidget">
+              <property name="alternatingRowColors">
                <bool>true</bool>
               </property>
-              <item>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
+              <row>
                <property name="text">
-                <string>New Item</string>
+                <string>Row-1</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset theme="media-playback-start">
+                 <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Row-3</string>
+               </property>
+              </row>
+              <column>
+               <property name="text">
+                <string>Duration</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Datetime</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Name</string>
+               </property>
+              </column>
+              <item row="0" column="0">
+               <property name="text">
+                <string>00:05:02</string>
+               </property>
+               <property name="checkState">
+                <enum>Checked</enum>
                </property>
               </item>
-              <item>
+              <item row="0" column="1">
                <property name="text">
-                <string>New Item</string>
+                <string>2020-04-27 17:31:34</string>
                </property>
               </item>
-              <item>
+              <item row="0" column="2">
                <property name="text">
-                <string>New Item</string>
+                <string>Unamed-1</string>
+               </property>
+              </item>
+              <item row="1" column="0">
+               <property name="text">
+                <string>00:01:02</string>
+               </property>
+               <property name="checkState">
+                <enum>Checked</enum>
+               </property>
+              </item>
+              <item row="1" column="1">
+               <property name="text">
+                <string>2020-04-27 17:31:34</string>
+               </property>
+              </item>
+              <item row="1" column="2">
+               <property name="text">
+                <string>Unamed-2</string>
+               </property>
+              </item>
+              <item row="2" column="0">
+               <property name="text">
+                <string>00:07:02</string>
+               </property>
+               <property name="checkState">
+                <enum>Checked</enum>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+               </property>
+              </item>
+              <item row="2" column="1">
+               <property name="text">
+                <string>2020-04-27 17:31:34</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+               </property>
+              </item>
+              <item row="2" column="2">
+               <property name="text">
+                <string>Unamed-3</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
                </property>
               </item>
              </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="com_tab_down">
+           <attribute name="title">
+            <string>串口</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_16">
+            <item>
+             <widget class="QTextEdit" name="textEdit_3"/>
             </item>
            </layout>
           </widget>
@@ -459,9 +469,9 @@
             <string>警告</string>
            </attribute>
           </widget>
-          <widget class="QWidget" name="tab_15">
+          <widget class="QWidget" name="data_tab_down">
            <attribute name="title">
-            <string>Widget area</string>
+            <string>数据</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_29">
             <item row="0" column="0">
@@ -718,7 +728,7 @@
                <enum>QTabWidget::East</enum>
               </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>2</number>
               </property>
               <widget class="QWidget" name="tab_20">
                <attribute name="title">
@@ -731,7 +741,7 @@
                    <enum>QTabWidget::South</enum>
                   </property>
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>5</number>
                   </property>
                   <widget class="QWidget" name="tab_22">
                    <attribute name="title">
@@ -1048,12 +1058,6 @@
             <string>Page</string>
            </attribute>
           </widget>
-          <widget class="QWidget" name="tab_5">
-           <attribute name="title">
-            <string>Page</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_8"/>
-          </widget>
          </widget>
         </item>
        </layout>
@@ -1192,7 +1196,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="com_tab">
        <attribute name="title">
@@ -1480,6 +1484,11 @@
                  <height>26</height>
                 </size>
                </property>
+               <property name="font">
+                <font>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
                <property name="styleSheet">
                 <string notr="true">padding-top: 0px; padding-bottom: 0px;</string>
                </property>
@@ -1521,7 +1530,7 @@
             </layout>
            </item>
            <item row="2" column="0">
-            <widget class="QTreeWidget" name="treeWidget_2">
+            <widget class="QTreeWidget" name="data_type_treeWidget">
              <column>
               <property name="text">
                <string>Material Tree</string>
@@ -1531,60 +1540,10 @@
               <property name="text">
                <string>Tree #1</string>
               </property>
-              <item>
-               <property name="text">
-                <string>Subitem #1</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Subitem #2</string>
-               </property>
-               <item>
-                <property name="text">
-                 <string>New Subitem</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>New Item</string>
-                </property>
-               </item>
-              </item>
              </item>
              <item>
               <property name="text">
                <string>Tree #2</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Subitem #4</string>
-              </property>
-              <item>
-               <property name="text">
-                <string>Subitem #41</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Subitem #42</string>
-               </property>
-              </item>
-             </item>
-             <item>
-              <property name="text">
-               <string>Subitem #5</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Tree #3</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Tree #4</string>
               </property>
              </item>
             </widget>
@@ -1614,6 +1573,11 @@
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
          <widget class="QScrollArea" name="scrollArea">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="verticalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOn</enum>
           </property>
@@ -1626,16 +1590,53 @@
              <x>0</x>
              <y>0</y>
              <width>543</width>
-             <height>420</height>
+             <height>414</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_15">
             <item>
              <layout class="QGridLayout" name="data_tab_right_gridLayout" rowstretch="0,1,0,1" columnstretch="0,0">
-              <item row="3" column="0">
-               <layout class="QGridLayout" name="gridLayout_7" columnstretch="0,2">
+              <item row="2" column="1">
+               <widget class="QLabel" name="data4_label">
+                <property name="text">
+                 <string>data4</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="data3_label">
+                <property name="text">
+                 <string>data3</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="data2_label">
+                <property name="text">
+                 <string>data2</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <layout class="QGridLayout" name="gridLayout_14" columnstretch="0,2">
+                <item row="0" column="1">
+                 <widget class="QLCDNumber" name="x2_lcd">
+                  <property name="smallDecimalPoint">
+                   <bool>true</bool>
+                  </property>
+                  <property name="digitCount">
+                   <number>10</number>
+                  </property>
+                  <property name="segmentStyle">
+                   <enum>QLCDNumber::Flat</enum>
+                  </property>
+                  <property name="value" stdset="0">
+                   <double>0.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
                 <item row="1" column="0">
-                 <widget class="QLabel" name="label_4">
+                 <widget class="QLabel" name="y2_sub_label_lcd">
                   <property name="font">
                    <font>
                     <pointsize>20</pointsize>
@@ -1644,7 +1645,191 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Y</string>
+                   <string>Y </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLCDNumber" name="z2_lcd">
+                  <property name="smallDecimalPoint">
+                   <bool>true</bool>
+                  </property>
+                  <property name="digitCount">
+                   <number>10</number>
+                  </property>
+                  <property name="segmentStyle">
+                   <enum>QLCDNumber::Flat</enum>
+                  </property>
+                  <property name="value" stdset="0">
+                   <double>0.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLCDNumber" name="y2_lcd">
+                  <property name="smallDecimalPoint">
+                   <bool>true</bool>
+                  </property>
+                  <property name="digitCount">
+                   <number>10</number>
+                  </property>
+                  <property name="segmentStyle">
+                   <enum>QLCDNumber::Flat</enum>
+                  </property>
+                  <property name="value" stdset="0">
+                   <double>0.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="x2_sub_label_lcd">
+                  <property name="font">
+                   <font>
+                    <pointsize>20</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>X </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="z2_sub_label_lcd">
+                  <property name="font">
+                   <font>
+                    <pointsize>20</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Z </string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="data1_label">
+                <property name="font">
+                 <font>
+                  <pointsize>20</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>data1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <layout class="QGridLayout" name="gridLayout_data4" columnstretch="0,2">
+                <item row="1" column="0">
+                 <widget class="QLabel" name="y4_sub_label_lcd">
+                  <property name="font">
+                   <font>
+                    <pointsize>20</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Y </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLCDNumber" name="z4_lcd">
+                  <property name="smallDecimalPoint">
+                   <bool>true</bool>
+                  </property>
+                  <property name="digitCount">
+                   <number>10</number>
+                  </property>
+                  <property name="segmentStyle">
+                   <enum>QLCDNumber::Flat</enum>
+                  </property>
+                  <property name="value" stdset="0">
+                   <double>0.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="z4_sub_label_lcd">
+                  <property name="font">
+                   <font>
+                    <pointsize>20</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Z </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLCDNumber" name="y4_lcd">
+                  <property name="smallDecimalPoint">
+                   <bool>true</bool>
+                  </property>
+                  <property name="digitCount">
+                   <number>10</number>
+                  </property>
+                  <property name="segmentStyle">
+                   <enum>QLCDNumber::Flat</enum>
+                  </property>
+                  <property name="value" stdset="0">
+                   <double>0.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="x4_sub_label_lcd">
+                  <property name="font">
+                   <font>
+                    <pointsize>20</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>X </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLCDNumber" name="x4_lcd">
+                  <property name="smallDecimalPoint">
+                   <bool>true</bool>
+                  </property>
+                  <property name="digitCount">
+                   <number>10</number>
+                  </property>
+                  <property name="segmentStyle">
+                   <enum>QLCDNumber::Flat</enum>
+                  </property>
+                  <property name="value" stdset="0">
+                   <double>0.000000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="3" column="0">
+               <layout class="QGridLayout" name="gridLayout_7" columnstretch="0,2">
+                <item row="1" column="0">
+                 <widget class="QLabel" name="y3_sub_label_lcd">
+                  <property name="font">
+                   <font>
+                    <pointsize>20</pointsize>
+                    <weight>50</weight>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Y </string>
                   </property>
                  </widget>
                 </item>
@@ -1665,7 +1850,7 @@
                  </widget>
                 </item>
                 <item row="2" column="0">
-                 <widget class="QLabel" name="label_5">
+                 <widget class="QLabel" name="z3_sub_label_lcd">
                   <property name="font">
                    <font>
                     <pointsize>20</pointsize>
@@ -1674,7 +1859,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Z</string>
+                   <string>Z </string>
                   </property>
                  </widget>
                 </item>
@@ -1695,7 +1880,7 @@
                  </widget>
                 </item>
                 <item row="0" column="0">
-                 <widget class="QLabel" name="label_6">
+                 <widget class="QLabel" name="x3_sub_label_lcd">
                   <property name="font">
                    <font>
                     <pointsize>20</pointsize>
@@ -1704,7 +1889,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>X</string>
+                   <string>X </string>
                   </property>
                  </widget>
                 </item>
@@ -1729,7 +1914,7 @@
               <item row="1" column="0">
                <layout class="QGridLayout" name="gridLayout_data1" columnstretch="0,2">
                 <item row="2" column="0">
-                 <widget class="QLabel" name="label_7">
+                 <widget class="QLabel" name="z1_sub_label_lcd">
                   <property name="font">
                    <font>
                     <pointsize>20</pointsize>
@@ -1738,12 +1923,12 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Z</string>
+                   <string>Z </string>
                   </property>
                  </widget>
                 </item>
                 <item row="0" column="0">
-                 <widget class="QLabel" name="label">
+                 <widget class="QLabel" name="x1_sub_label_lcd">
                   <property name="font">
                    <font>
                     <pointsize>20</pointsize>
@@ -1752,12 +1937,12 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>X</string>
+                   <string>X </string>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QLabel" name="label_3">
+                 <widget class="QLabel" name="y1_sub_label_lcd">
                   <property name="font">
                    <font>
                     <pointsize>20</pointsize>
@@ -1766,7 +1951,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Z</string>
+                   <string>Y </string>
                   </property>
                  </widget>
                 </item>
@@ -1820,222 +2005,6 @@
                 </item>
                </layout>
               </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="data1_label">
-                <property name="text">
-                 <string>data1</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="data2_label">
-                <property name="text">
-                 <string>data2</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="data3_label">
-                <property name="text">
-                 <string>data3</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <layout class="QGridLayout" name="gridLayout_14" columnstretch="0,2">
-                <item row="0" column="1">
-                 <widget class="QLCDNumber" name="x2_lcd">
-                  <property name="smallDecimalPoint">
-                   <bool>true</bool>
-                  </property>
-                  <property name="digitCount">
-                   <number>10</number>
-                  </property>
-                  <property name="segmentStyle">
-                   <enum>QLCDNumber::Flat</enum>
-                  </property>
-                  <property name="value" stdset="0">
-                   <double>0.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="label_9">
-                  <property name="font">
-                   <font>
-                    <pointsize>20</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Y</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1">
-                 <widget class="QLCDNumber" name="z2_lcd">
-                  <property name="smallDecimalPoint">
-                   <bool>true</bool>
-                  </property>
-                  <property name="digitCount">
-                   <number>10</number>
-                  </property>
-                  <property name="segmentStyle">
-                   <enum>QLCDNumber::Flat</enum>
-                  </property>
-                  <property name="value" stdset="0">
-                   <double>0.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QLCDNumber" name="y2_lcd">
-                  <property name="smallDecimalPoint">
-                   <bool>true</bool>
-                  </property>
-                  <property name="digitCount">
-                   <number>10</number>
-                  </property>
-                  <property name="segmentStyle">
-                   <enum>QLCDNumber::Flat</enum>
-                  </property>
-                  <property name="value" stdset="0">
-                   <double>0.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="label_11">
-                  <property name="font">
-                   <font>
-                    <pointsize>20</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>X</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QLabel" name="label_10">
-                  <property name="font">
-                   <font>
-                    <pointsize>20</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Z</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLabel" name="data4_label">
-                <property name="text">
-                 <string>data4</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <layout class="QGridLayout" name="gridLayout_data4" columnstretch="0,2">
-                <item row="1" column="0">
-                 <widget class="QLabel" name="label_13">
-                  <property name="font">
-                   <font>
-                    <pointsize>20</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Y</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1">
-                 <widget class="QLCDNumber" name="z4_lcd">
-                  <property name="smallDecimalPoint">
-                   <bool>true</bool>
-                  </property>
-                  <property name="digitCount">
-                   <number>10</number>
-                  </property>
-                  <property name="segmentStyle">
-                   <enum>QLCDNumber::Flat</enum>
-                  </property>
-                  <property name="value" stdset="0">
-                   <double>0.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QLabel" name="label_14">
-                  <property name="font">
-                   <font>
-                    <pointsize>20</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Z</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QLCDNumber" name="y4_lcd">
-                  <property name="smallDecimalPoint">
-                   <bool>true</bool>
-                  </property>
-                  <property name="digitCount">
-                   <number>10</number>
-                  </property>
-                  <property name="segmentStyle">
-                   <enum>QLCDNumber::Flat</enum>
-                  </property>
-                  <property name="value" stdset="0">
-                   <double>0.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QLCDNumber" name="x4_lcd">
-                  <property name="smallDecimalPoint">
-                   <bool>true</bool>
-                  </property>
-                  <property name="digitCount">
-                   <number>10</number>
-                  </property>
-                  <property name="segmentStyle">
-                   <enum>QLCDNumber::Flat</enum>
-                  </property>
-                  <property name="value" stdset="0">
-                   <double>0.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="label_15">
-                  <property name="font">
-                   <font>
-                    <pointsize>20</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>X</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
              </layout>
             </item>
            </layout>
@@ -2063,7 +2032,7 @@
              <x>0</x>
              <y>0</y>
              <width>543</width>
-             <height>420</height>
+             <height>414</height>
             </rect>
            </property>
           </widget>
@@ -2090,7 +2059,7 @@
              <x>0</x>
              <y>0</y>
              <width>543</width>
-             <height>420</height>
+             <height>414</height>
             </rect>
            </property>
           </widget>
@@ -2539,13 +2508,12 @@ p, li { white-space: pre-wrap; }
   <tabstop>tab_left</tabstop>
   <tabstop>groupBox_3</tabstop>
   <tabstop>checkBox</tabstop>
-  <tabstop>tabWidget_3</tabstop>
+  <tabstop>tab_down_2</tabstop>
   <tabstop>tab_down</tabstop>
   <tabstop>horizontalSlider_2</tabstop>
   <tabstop>verticalSlider_2</tabstop>
   <tabstop>treeWidget</tabstop>
   <tabstop>listWidget_2</tabstop>
-  <tabstop>tableWidget</tabstop>
   <tabstop>tab_right</tabstop>
   <tabstop>dateEdit_2</tabstop>
   <tabstop>listWidget</tabstop>

@@ -99,8 +99,11 @@ class PortManager(QObject):
 
     def on_push_com_btn(self):
         if self.open_status == 'closed':
-            self.curr_serial = serial.Serial(self.curr_port, self.curr_baud_rate, timeout=60)
-
+            try:
+                self.curr_serial = serial.Serial(self.curr_port, self.curr_baud_rate, timeout=60)
+            except Exception as e:
+                print(e)
+                return
             self.com_btn.setText('断开')
             self._set_com_info_label(f'连接到串口: {self.curr_port}', 'main', 'ok')
             self.open_status = 'opened'

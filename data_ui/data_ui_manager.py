@@ -9,7 +9,7 @@
 import numpy as np
 from PyQt5.QtCore import pyqtSignal, QThread
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QPushButton, QCheckBox
+from PyQt5.QtWidgets import QCheckBox
 
 import ports
 
@@ -47,20 +47,31 @@ class DataUiManager:
             [ui.x3_lcd, ui.y3_lcd, ui.z3_lcd],
             [ui.x4_lcd, ui.y4_lcd, ui.z4_lcd],
         ]
+        self.lcd_3_sub_label = [
+            [ui.x1_sub_label_lcd, ui.y1_sub_label_lcd, ui.z1_sub_label_lcd],
+            [ui.x2_sub_label_lcd, ui.y2_sub_label_lcd, ui.z2_sub_label_lcd],
+            [ui.x3_sub_label_lcd, ui.y3_sub_label_lcd, ui.z3_sub_label_lcd],
+            [ui.x4_sub_label_lcd, ui.y4_sub_label_lcd, ui.z4_sub_label_lcd],
+        ]
         self.charts_time = None
         self.charts_freq = None
 
         self.data_recived_from_ports_signal = pyqtSignal(str)
         self.port_manager.data_ready_signal.connect(self.handle_port_data)
 
+        self.all_data_type_list = [
+            '加速度', '角速度', '温度'
+        ]
         self.ui_label_list_static = [
                 (ui.data1_label, '加速度'),
                 (ui.data2_label, '角速度'),
+                (ui.data3_label, '标量'),
             ]
         self.ui_dict_list = [
             {
                 'data_name': '加速度X',
                 'lcd': (0, 0),
+                'lcd_label_name': 'X ',
                 'chart_time': 0,
                 'chart_time_locate': [0, 0],
                 'chart_freq': 0,
@@ -69,6 +80,7 @@ class DataUiManager:
             {
                 'data_name': '加速度Y',
                 'lcd': (0, 1),
+                'lcd_label_name': 'Y ',
                 'chart_time': 1,
                 'chart_time_locate': [1, 0],
                 'chart_freq': 1,
@@ -77,14 +89,16 @@ class DataUiManager:
             {
                 'data_name': '加速度Z',
                 'lcd': (0, 2),
+                'lcd_label_name': 'Z ',
                 'chart_time': 2,
                 'chart_time_locate': [2, 0],
                 'chart_freq': 2,
                 'chart_freq_locate': [2, 0],
             },
             # {
-            #     'data_name': '角速度X',
+            #     'data_name': '温度',
             #     'lcd': (1, 0),
+            #     'lcd_label_name': '温度 ',
             #     'chart_time': 3,
             #     'chart_time_locate': [3, 0],
             #     'chart_freq': 3,
@@ -96,18 +110,30 @@ class DataUiManager:
         self._ui_bounder = []
         self.bound_data_and_ui()
 
+        ui.data_type_update_btn.clicked.connect(self.on_push_data_type_update_btn)
+
     def bound_data_and_ui(self):
         """
-        绑定数据和对应的ui控件
+        静态绑定数据和对应的ui控件
         :return:
         """
-        for label_ui, label_name in self.ui_label_list_static:
+        item_list = list(range(self.ui.data_type_btn_layout.count()))
+        item_list.reverse()  # 倒序删除，避免影响布局顺序
+        for i in item_list:
+            item = self.ui.data_type_btn_layout.itemAt(i)
+            self.ui.data_type_btn_layout.removeItem(item)
+            if item.widget():
+                item.widget().deleteLater()
+
+        for name in self.all_data_type_list:
             check_box = QCheckBox()
             font = QFont()
             check_box.setFont(font)
-            check_box.setText(label_name)
+            check_box.setText(name)
             check_box.setChecked(True)
             self.ui.data_type_btn_layout.addWidget(check_box)
+
+        for label_ui, label_name in self.ui_label_list_static:
             label_ui.setText(label_name)
 
         self._ui_bounder.clear()
@@ -120,6 +146,11 @@ class DataUiManager:
                   ud.get('chart_time'),
                   ud.get('chart_freq'),
                   ]
+            if ud.get('lcd') is not None:
+                lcd = ud.get('lcd')
+                c = ud.get('lcd_label_name')
+                assert c is not None
+                self.lcd_3_sub_label[int(lcd[0])][lcd[1]].setText(c)
             if ud.get('chart_time') is not None:
                 c = ud.get('chart_time_locate')
                 assert c is not None
@@ -152,7 +183,7 @@ class DataUiManager:
             for j, ui_info in enumerate(uis):
                 if ui_info is None:
                     continue
-                if j == 0:
+                if j == 0 and self.ui.tab_right.currentIndex() == 0:   # 懒加载
                     self.lcd_3_ui[int(ui_info[0])][ui_info[1]].display(d)
 
                 if j == 1:
@@ -217,3 +248,68 @@ class DataUiManager:
         # TODO 优化缓存清理
         if len(self.data_buffer) > self.DATA_BUFFER_MAX_SIZE:
             self.data_buffer = self.data_buffer[-self.FFT_COLLECT_RANGE:]
+
+    def on_push_data_type_update_btn(self):
+        self.ui_label_list_static.clear()
+        self.ui_dict_list.clear()
+        # TODO 标量矢量自动排序
+        self.all_data_type_list = ['加速度', '角速度', '温度']
+        data_type_is_3d_vector = [True, True, False]
+        assert len(self.all_data_type_list) == len(data_type_is_3d_vector)
+        # 为lcd添加矢量label
+        scalar_count = 0
+        i = 0
+        for v_name, is_v in zip(self.all_data_type_list, data_type_is_3d_vector):
+            if is_v:
+                self.ui_label_list_static.append((self.data_labels_ui[i], v_name))
+                i += 1
+            else:
+                scalar_count += 1
+        # 为lcd添加标量label
+        while scalar_count > 0:
+            self.ui_label_list_static.append((self.data_labels_ui[i], '标量'))
+            i += 1
+            scalar_count -= 3
+        scalar_idx = 0    # 标量
+        vector_idx = 0    # 矢量
+        lcd_idx = 0
+        chart_time_idx = 0
+        chart_freq_idx = 0
+        for data_type_name, is_v in zip(self.all_data_type_list, data_type_is_3d_vector):
+            if is_v:    # 只有矢量在此初始化label名称，标量送入标量区内
+                for j, v_name in enumerate(['X', 'Y', 'Z']):
+                    ui_dict = {'data_name': data_type_name+v_name}
+                    if True:
+                        ui_dict['lcd'] = (lcd_idx, j)
+                        ui_dict['lcd_label_name'] = v_name + ' '    # 加空格是为了调整布局
+                    if True:
+                        ui_dict['chart_time'] = chart_time_idx
+                        ui_dict['chart_time_locate'] = [0, chart_time_idx]
+                        chart_time_idx += 1
+                    if True:
+                        ui_dict['chart_freq'] = chart_freq_idx
+                        ui_dict['chart_freq_locate'] = [0, chart_freq_idx]
+                        chart_freq_idx += 1
+
+                    self.ui_dict_list.append(ui_dict)
+                    vector_idx += 1
+                if True:
+                    lcd_idx += 1
+
+            else:
+                ui_dict = {'data_name': data_type_name}
+                if True:
+                    ui_dict['lcd'] = (int(lcd_idx + scalar_idx / 3), scalar_idx % 3)
+                    ui_dict['lcd_label_name'] = data_type_name + ' '    # 加空格是为了调整布局
+                if True:
+                    ui_dict['chart_time'] = chart_time_idx
+                    ui_dict['chart_time_locate'] = [0, chart_time_idx]
+                    chart_time_idx += 1
+                if True:
+                    ui_dict['chart_freq'] = chart_freq_idx
+                    ui_dict['chart_freq_locate'] = [0, chart_freq_idx]
+                    chart_freq_idx += 1
+
+                self.ui_dict_list.append(ui_dict)
+                scalar_idx += 1
+        self.bound_data_and_ui()
