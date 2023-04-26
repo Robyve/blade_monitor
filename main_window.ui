@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1222</width>
-    <height>790</height>
+    <height>842</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -43,7 +43,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tab_down">
           <property name="currentIndex">
-           <number>9</number>
+           <number>0</number>
           </property>
           <property name="usesScrollButtons">
            <bool>true</bool>
@@ -1170,13 +1170,439 @@
       </widget>
      </widget>
     </item>
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QTabWidget" name="tab_left">
+      <property name="maximumSize">
+       <size>
+        <width>250</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="com_tab">
+       <attribute name="title">
+        <string>串口</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_18">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>端口号</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="com_combo"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="com_info_icon_label_new_connect">
+            <property name="minimumSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="com_info_label_new_connect">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_17">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>波特率</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="baud_rate_combo">
+          <item>
+           <property name="text">
+            <string>2400</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>4800</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>9600</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>19200</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>38400</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>57600</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>115200</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>230400</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QPushButton" name="com_btn">
+            <property name="text">
+             <string>启动</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLabel" name="com_info_icon_label">
+              <property name="minimumSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="com_info_label">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string>串口设置</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="checkBox">
+             <property name="text">
+              <string>CheckBox</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+             <property name="tristate">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_13">
+       <attribute name="title">
+        <string>配置</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_24"/>
+      </widget>
+      <widget class="QWidget" name="tab_12">
+       <attribute name="title">
+        <string>数据</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_14">
+        <item>
+         <widget class="QGroupBox" name="data_type_btn_groupBox">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>数据类型</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="class" stdset="0">
+           <string>fill_background</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_38">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="data_type_btn_layout"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="data_type_update_btn">
+             <property name="text">
+              <string>更新</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="title">
+           <string>待选数据类型</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="class" stdset="0">
+           <string>fill_background</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_36">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="spacing">
+              <number>3</number>
+             </property>
+             <item>
+              <widget class="QTextEdit" name="textEdit_2">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>26</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>26</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">padding-top: 0px; padding-bottom: 0px;</string>
+               </property>
+               <property name="verticalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="horizontalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+               <property name="acceptRichText">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="maximumSize">
+                <size>
+                 <width>26</width>
+                 <height>26</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <kerning>false</kerning>
+                </font>
+               </property>
+               <property name="inputMethodHints">
+                <set>Qt::ImhNone</set>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <widget class="QTreeWidget" name="treeWidget_2">
+             <column>
+              <property name="text">
+               <string>Material Tree</string>
+              </property>
+             </column>
+             <item>
+              <property name="text">
+               <string>Tree #1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>Subitem #1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Subitem #2</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>New Subitem</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Item</string>
+                </property>
+               </item>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>Tree #2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Subitem #4</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>Subitem #41</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Subitem #42</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>Subitem #5</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Tree #3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Tree #4</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
     <item row="0" column="2">
      <widget class="QTabWidget" name="tab_right">
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1200,7 +1626,7 @@
              <x>0</x>
              <y>0</y>
              <width>543</width>
-             <height>368</height>
+             <height>420</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_15">
@@ -1637,7 +2063,7 @@
              <x>0</x>
              <y>0</y>
              <width>543</width>
-             <height>368</height>
+             <height>420</height>
             </rect>
            </property>
           </widget>
@@ -1664,7 +2090,7 @@
              <x>0</x>
              <y>0</y>
              <width>543</width>
-             <height>368</height>
+             <height>420</height>
             </rect>
            </property>
           </widget>
@@ -1676,393 +2102,6 @@
        <attribute name="title">
         <string>模拟单片机</string>
        </attribute>
-      </widget>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QSplitter" name="splitter_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QTabWidget" name="tab_left">
-      <property name="maximumSize">
-       <size>
-        <width>250</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="tabPosition">
-       <enum>QTabWidget::North</enum>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
-      </property>
-      <property name="currentIndex">
-       <number>2</number>
-      </property>
-      <widget class="QWidget" name="com_tab">
-       <attribute name="title">
-        <string>串口</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_18">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>端口号</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="com_combo"/>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QLabel" name="com_info_icon_label_new_connect">
-            <property name="minimumSize">
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="com_info_label_new_connect">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_17">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>波特率</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="baud_rate_combo">
-          <item>
-           <property name="text">
-            <string>2400</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>4800</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>9600</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>19200</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>38400</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>57600</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>115200</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>230400</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QPushButton" name="com_btn">
-            <property name="text">
-             <string>启动</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QLabel" name="com_info_icon_label">
-              <property name="minimumSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="com_info_label">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>16</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_3">
-          <property name="title">
-           <string>串口设置</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="checkBox">
-             <property name="text">
-              <string>CheckBox</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="tristate">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_13">
-       <attribute name="title">
-        <string>配置</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_24"/>
-      </widget>
-      <widget class="QWidget" name="tab_12">
-       <attribute name="title">
-        <string>数据</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_14">
-        <item>
-         <widget class="QGroupBox" name="data_type_groupBox">
-          <property name="title">
-           <string>Buttons</string>
-          </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-          <property name="class" stdset="0">
-           <string>fill_background</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_38">
-           <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_9">
-             <property name="text">
-              <string>Checked</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_10">
-             <property name="text">
-              <string>Checked</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_11">
-             <property name="text">
-              <string>Checked</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_4">
-          <property name="title">
-           <string>Check</string>
-          </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-          <property name="class" stdset="0">
-           <string>fill_background</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_36">
-           <item row="4" column="0">
-            <spacer name="verticalSpacer_7">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="3" column="0">
-            <widget class="QCheckBox" name="checkBox_9">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>CheckBox</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QCheckBox" name="checkBox_11">
-             <property name="text">
-              <string>CheckBox</string>
-             </property>
-             <property name="tristate">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QCheckBox" name="checkBox_12">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>CheckBox</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="checkBox_10">
-             <property name="text">
-              <string>CheckBox</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-             <property name="tristate">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QPushButton" name="pushButton">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
       </widget>
      </widget>
     </item>
@@ -2512,11 +2551,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>listWidget</tabstop>
   <tabstop>textEdit</tabstop>
   <tabstop>plainTextEdit</tabstop>
-  <tabstop>pushButton_9</tabstop>
-  <tabstop>checkBox_10</tabstop>
-  <tabstop>checkBox_11</tabstop>
-  <tabstop>checkBox_12</tabstop>
-  <tabstop>checkBox_9</tabstop>
   <tabstop>groupBox_7</tabstop>
   <tabstop>pushButton_28</tabstop>
   <tabstop>pushButton_32</tabstop>

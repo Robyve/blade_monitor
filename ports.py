@@ -34,17 +34,17 @@ class SerialQThread(QThread):
         while True:
             if self.stop_flag:
                 return
-            if self.curr_serial.in_waiting:
-                try:
+            try:
+                if self.curr_serial.in_waiting:
                     self.buffer_str += self.curr_serial.readline(self.curr_serial.in_waiting).decode(errors='ignore')
                     self.curr_serial.flushOutput()
-                except:
-                    return
-            else:
-                self.data_ready_signal.emit(self.buffer_str)
-                self.buffer_str = ''
-                self.curr_serial.flushOutput()
-                time.sleep(self.collect_dtime)
+                else:
+                    self.data_ready_signal.emit(self.buffer_str)
+                    self.buffer_str = ''
+                    self.curr_serial.flushOutput()
+                    time.sleep(self.collect_dtime)
+            except:
+                return
 
     def stop(self):
         self.stop_flag = True
@@ -55,7 +55,7 @@ class PortManager(QObject):
 
     def __init__(self, ui):
         super().__init__()
-        self.collect_dtime = 0.1    # 采样频率
+        self.collect_dtime = 0.08    # 采样频率
 
         self.curr_serial = None     # 串口实例
         self.port_list = []

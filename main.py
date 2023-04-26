@@ -70,6 +70,7 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
         # self.show_dock_theme(self.main)
 
         logo = QIcon("qt_material:/logo/logo.svg")
+        # logo = QIcon("icon/bjut.jpeg")
         logo_frame = QIcon("qt_material:/logo/logo_frame.svg")
 
         try:

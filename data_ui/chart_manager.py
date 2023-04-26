@@ -83,7 +83,7 @@ def set_chart_datas(chart: QChart, x_list, y_list, axis_range_mode=None):
         x = max(abs(x_axis_min), abs(x_axis_max))
         chart.axisX().setRange(-x, x)
         chart.axisY().setRange(y_axis_min, y_axis_max)
-    peak_idxs = find_peaks(y_list, height=0.05*(y_axis_max - y_axis_min))[0]
+    # peak_idxs = find_peaks(y_list, height=0.05*(y_axis_max - y_axis_min))[0]
     # for idx in peak_idxs:
     #     print(x_list[idx], end=' ')
     # print('')

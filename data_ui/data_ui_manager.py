@@ -5,8 +5,11 @@
 # @File    : data_ui_manager.py
 # @Software: PyCharm 
 # @Comment :
+
 import numpy as np
 from PyQt5.QtCore import pyqtSignal, QThread
+from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import QPushButton, QCheckBox
 
 import ports
 
@@ -30,7 +33,6 @@ class DataUiManager:
                  port_manager: ports.PortManager):
         self.DATA_BUFFER_MAX_SIZE = 400
         self.FFT_COLLECT_RANGE = 200  # fft采样范围，属于少于该范围不进行fft
-        self.data_buffer = np.empty((0, 3))
         self.port_manager = port_manager
         self.ui = ui
         self.data_labels_ui = [
@@ -89,6 +91,8 @@ class DataUiManager:
             #     'chart_freq_locate': [3, 0],
             # },
         ]
+        self.data_buffer = None
+        self.data_buffer_width = None   # data_buffer每条的数据个数
         self._ui_bounder = []
         self.bound_data_and_ui()
 
@@ -98,7 +102,14 @@ class DataUiManager:
         :return:
         """
         for label_ui, label_name in self.ui_label_list_static:
+            check_box = QCheckBox()
+            font = QFont()
+            check_box.setFont(font)
+            check_box.setText(label_name)
+            check_box.setChecked(True)
+            self.ui.data_type_btn_layout.addWidget(check_box)
             label_ui.setText(label_name)
+
         self._ui_bounder.clear()
         chart_time_locate = []
         chart_time_names = []
@@ -124,6 +135,8 @@ class DataUiManager:
                 assert n is not None
                 chart_freq_names.append(n)
             self._ui_bounder.append(ls)
+        self.data_buffer_width = len(self.ui_dict_list)
+        self.data_buffer = np.empty((0, len(self.ui_dict_list)))
         self.charts_time = init_charts(self.ui.graph_tab_time_scrollArea, chart_time_locate, chart_time_names)
         self.charts_freq = init_charts(self.ui.graph_tab_freq_scrollArea, chart_freq_locate, chart_freq_names)
 
@@ -149,7 +162,8 @@ class DataUiManager:
                     if self.data_buffer.shape[0] > self.FFT_COLLECT_RANGE:
                         signal = self.data_buffer[len(self.data_buffer) - self.FFT_COLLECT_RANGE:, i]
                         fft_x, fft_y = self.calc_fft(signal)
-                        set_chart_datas(self.charts_freq[ui_info], fft_x, fft_y)
+                        if self.ui.tab_right.currentIndex() == 2:   # 懒加载
+                            set_chart_datas(self.charts_freq[ui_info], fft_x, fft_y)
             i += 1
 
     def add_3d_datas(self, lcd_3_idx: int, to_chart_list, chart_idxs: list[int], datas):
@@ -164,8 +178,7 @@ class DataUiManager:
         for idx, d in zip(chart_idxs, datas):
             add_single_chart_data(to_chart_list[idx], d)
 
-    @staticmethod
-    def convert_data_from_port(data: str):
+    def convert_data_from_port(self, data: str):
         try:
             temp_list = data.split('$')
         except (AttributeError, TypeError) as e:
@@ -174,14 +187,13 @@ class DataUiManager:
         data_list = []
         for s in temp_list:
             s = s.split(' ')
-            if len(s) == 3:
-                data_list.append(s)
-        for i in range(len(data_list)):
+            if len(s) != self.data_buffer_width:
+                continue
             try:
-                data_list[i] = list(map(float, data_list[i]))
+                s = list(map(float, s))
             except (TypeError, ValueError) as e:
-                print(e)
-                return
+                continue
+            data_list.append(s)
         return data_list
 
     @staticmethod
@@ -193,15 +205,7 @@ class DataUiManager:
         return freqs, fft_result
 
     def handle_port_data(self, data: str):
-        temp_list = data.split('$')
-        data_list = []
-        for s in temp_list:
-            s = s.split(' ')
-            if len(s) == 3:     # TODO 要删
-                data_list.append(s)
-        for i in range(len(data_list)):
-            data_list[i] = list(map(float, data_list[i]))
-
+        data_list = self.convert_data_from_port(data)
         if data_list is None or not data_list:
             return
         # 到此数据应该是清洗过的
