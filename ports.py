@@ -15,6 +15,7 @@ from PyQt5.QtCore import QThread, QObject, QTimer, pyqtSignal
 from PyQt5.QtGui import QPixmap
 
 import data_ui.data_ui_manager as data_ui_manager
+from sound import sound
 
 
 class SerialQThread(QThread):
@@ -55,9 +56,9 @@ class PortManager(QObject):
 
     def __init__(self, ui):
         super().__init__()
-        self.collect_dtime = 0.08    # 采样频率
+        self.collect_dtime = 0.08  # 采样频率
 
-        self.curr_serial = None     # 串口实例
+        self.curr_serial = None  # 串口实例
         self.port_list = []
         self.curr_baud_rate = None
         self.curr_port = None
@@ -89,6 +90,8 @@ class PortManager(QObject):
         self.com_combo.activated[str].connect(self.on_comport_changed)
         self.baud_rate_combo.activated[str].connect(self.on_baud_rate_changed)
         self.com_btn.clicked.connect(self.on_push_com_btn)
+
+        self.sound_thread = None
 
     def on_comport_changed(self, com_port):
         self.curr_port = com_port
@@ -143,7 +146,10 @@ class PortManager(QObject):
                 self.new_connect_info_timer.timeout.connect(
                     lambda: self._set_com_info_label(f'', 'new_connect', ''))
                 self._set_com_info_label(f'新串口{new_com}', 'new_connect', 'info')
+                self.sound_thread = threading.Thread(target=sound.play_sound)
+                self.sound_thread.start()
                 self.new_connect_info_timer.start(1500)
+
             self.port_list = new_port_list
             self.com_combo.clear()
             for com_port in self.port_list:

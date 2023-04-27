@@ -7,11 +7,12 @@
 # @Comment :
 
 import numpy as np
-from PyQt5.QtCore import pyqtSignal, QThread
+from PyQt5.QtCore import pyqtSignal, QThread, QSize
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QCheckBox
+from PyQt5.QtWidgets import QCheckBox, QTreeWidgetItem, QTreeWidget
 
 import ports
+from data_ui import data_type_db
 
 from data_ui.chart_manager import *
 
@@ -28,14 +29,32 @@ class FftQThread(QThread):
         set_chart_datas(self.chart_freq, fft_x, fft_y)
 
 
+class MyTreeWidget(QTreeWidget):
+    def __init__(self):
+        super().__init__()
+        self.setHeaderHidden(True)
+
+    # def mousePressEvent(self, event):
+    #     QTreeWidget.mousePressEvent(self, event)
+
+    def mouseMoveEvent(self, event):
+        # 禁用鼠标拖动事件，防止出现选中暴露原始布局
+        pass
+
+    def contextMenuEvent(self, event):
+        # 禁用右键事件，防止出现选中暴露原始布局
+        pass
+
+
 class DataUiManager:
     def __init__(self, ui,
                  port_manager: ports.PortManager):
+        self.all_data_type_tree_widget = None
         self.DATA_BUFFER_MAX_SIZE = 400
         self.FFT_COLLECT_RANGE = 200  # fft采样范围，属于少于该范围不进行fft
         self.port_manager = port_manager
         self.ui = ui
-        self.data_labels_ui = [
+        self.lcd_top_labels_ui = [
             ui.data1_label,
             ui.data2_label,
             ui.data3_label,
@@ -47,7 +66,7 @@ class DataUiManager:
             [ui.x3_lcd, ui.y3_lcd, ui.z3_lcd],
             [ui.x4_lcd, ui.y4_lcd, ui.z4_lcd],
         ]
-        self.lcd_3_sub_label = [
+        self.lcd_3_sub_label_ui = [
             [ui.x1_sub_label_lcd, ui.y1_sub_label_lcd, ui.z1_sub_label_lcd],
             [ui.x2_sub_label_lcd, ui.y2_sub_label_lcd, ui.z2_sub_label_lcd],
             [ui.x3_sub_label_lcd, ui.y3_sub_label_lcd, ui.z3_sub_label_lcd],
@@ -59,60 +78,22 @@ class DataUiManager:
         self.data_recived_from_ports_signal = pyqtSignal(str)
         self.port_manager.data_ready_signal.connect(self.handle_port_data)
 
-        self.all_data_type_list = [
-            '加速度', '角速度', '温度'
-        ]
-        self.ui_label_list_static = [
-                (ui.data1_label, '加速度'),
-                (ui.data2_label, '角速度'),
-                (ui.data3_label, '标量'),
-            ]
-        self.ui_dict_list = [
-            {
-                'data_name': '加速度X',
-                'lcd': (0, 0),
-                'lcd_label_name': 'X ',
-                'chart_time': 0,
-                'chart_time_locate': [0, 0],
-                'chart_freq': 0,
-                'chart_freq_locate': [0, 0],
-            },
-            {
-                'data_name': '加速度Y',
-                'lcd': (0, 1),
-                'lcd_label_name': 'Y ',
-                'chart_time': 1,
-                'chart_time_locate': [1, 0],
-                'chart_freq': 1,
-                'chart_freq_locate': [1, 0],
-            },
-            {
-                'data_name': '加速度Z',
-                'lcd': (0, 2),
-                'lcd_label_name': 'Z ',
-                'chart_time': 2,
-                'chart_time_locate': [2, 0],
-                'chart_freq': 2,
-                'chart_freq_locate': [2, 0],
-            },
-            # {
-            #     'data_name': '温度',
-            #     'lcd': (1, 0),
-            #     'lcd_label_name': '温度 ',
-            #     'chart_time': 3,
-            #     'chart_time_locate': [3, 0],
-            #     'chart_freq': 3,
-            #     'chart_freq_locate': [3, 0],
-            # },
-        ]
+        self.all_data_type_list = []
+        self.ui_label_list_static = []
+        self.ui_dict_list = []
         self.data_buffer = None
-        self.data_buffer_width = None   # data_buffer每条的数据个数
+        self.data_buffer_width = None  # data_buffer每条的数据个数
         self._ui_bounder = []
-        self.bound_data_and_ui()
+
+        self._init_data_type_tree()
+        self.on_push_data_type_update_btn()
+
+        self._bound_data_and_ui()
+        self._init_data_type_tree()
 
         ui.data_type_update_btn.clicked.connect(self.on_push_data_type_update_btn)
 
-    def bound_data_and_ui(self):
+    def _bound_data_and_ui(self):
         """
         静态绑定数据和对应的ui控件
         :return:
@@ -120,17 +101,18 @@ class DataUiManager:
         item_list = list(range(self.ui.data_type_btn_layout.count()))
         item_list.reverse()  # 倒序删除，避免影响布局顺序
         for i in item_list:
-            item = self.ui.data_type_btn_layout.itemAt(i)
-            self.ui.data_type_btn_layout.removeItem(item)
-            if item.widget():
-                item.widget().deleteLater()
+            check_box_to_delete = self.ui.data_type_btn_layout.itemAt(i)
+            self.ui.data_type_btn_layout.removeItem(check_box_to_delete)
+            if check_box_to_delete.widget():
+                check_box_to_delete.widget().deleteLater()
 
-        for name in self.all_data_type_list:
+        for dt in self.all_data_type_list:
             check_box = QCheckBox()
             font = QFont()
             check_box.setFont(font)
-            check_box.setText(name)
+            check_box.setText(dt['name'])
             check_box.setChecked(True)
+            check_box.setFixedSize(QSize(250, 30))
             self.ui.data_type_btn_layout.addWidget(check_box)
 
         for label_ui, label_name in self.ui_label_list_static:
@@ -146,11 +128,17 @@ class DataUiManager:
                   ud.get('chart_time'),
                   ud.get('chart_freq'),
                   ]
+            for top_label, lcd_3, label_3 in zip(self.lcd_top_labels_ui, self.lcd_3_ui, self.lcd_3_sub_label_ui):
+                top_label.setVisible(False)
+                for lcd, label in zip(lcd_3, label_3):
+                    lcd.setVisible(False)
+                    label.setVisible(False)
             if ud.get('lcd') is not None:
                 lcd = ud.get('lcd')
                 c = ud.get('lcd_label_name')
                 assert c is not None
-                self.lcd_3_sub_label[int(lcd[0])][lcd[1]].setText(c)
+                self.lcd_3_sub_label_ui[int(lcd[0])][lcd[1]].setVisible(True)
+                self.lcd_3_sub_label_ui[int(lcd[0])][lcd[1]].setText(c)
             if ud.get('chart_time') is not None:
                 c = ud.get('chart_time_locate')
                 assert c is not None
@@ -183,7 +171,7 @@ class DataUiManager:
             for j, ui_info in enumerate(uis):
                 if ui_info is None:
                     continue
-                if j == 0 and self.ui.tab_right.currentIndex() == 0:   # 懒加载
+                if j == 0 and self.ui.tab_right.currentIndex() == 0:  # 懒加载
                     self.lcd_3_ui[int(ui_info[0])][ui_info[1]].display(d)
 
                 if j == 1:
@@ -193,7 +181,7 @@ class DataUiManager:
                     if self.data_buffer.shape[0] > self.FFT_COLLECT_RANGE:
                         signal = self.data_buffer[len(self.data_buffer) - self.FFT_COLLECT_RANGE:, i]
                         fft_x, fft_y = self.calc_fft(signal)
-                        if self.ui.tab_right.currentIndex() == 2:   # 懒加载
+                        if self.ui.tab_right.currentIndex() == 2:  # 懒加载
                             set_chart_datas(self.charts_freq[ui_info], fft_x, fft_y)
             i += 1
 
@@ -223,6 +211,7 @@ class DataUiManager:
             try:
                 s = list(map(float, s))
             except (TypeError, ValueError) as e:
+                print(e)
                 continue
             data_list.append(s)
         return data_list
@@ -249,39 +238,69 @@ class DataUiManager:
         if len(self.data_buffer) > self.DATA_BUFFER_MAX_SIZE:
             self.data_buffer = self.data_buffer[-self.FFT_COLLECT_RANGE:]
 
+    def _init_data_type_tree(self):
+        if self.all_data_type_tree_widget:
+            self.all_data_type_tree_widget.deleteLater()
+        self.all_data_type_tree_widget = MyTreeWidget()
+        self.all_data_type_tree_widget.setMinimumHeight(200)
+        self.ui.all_data_type_vLayout.addWidget(self.all_data_type_tree_widget)
+        for dt in data_type_db.DATA_TYPE_DB:
+            item = QTreeWidgetItem()
+            item.setFlags(item.flags())
+            item.setFlags(item.flags() & ~Qt.ItemIsSelectable)
+            item.setSizeHint(0, QSize(250, 25))
+            checkbox = QCheckBox()
+            checkbox.setText(dt['name'])
+            checkbox.setFixedSize(QSize(250, 25))
+            self.all_data_type_tree_widget.addTopLevelItem(item)
+            self.all_data_type_tree_widget.setItemWidget(item, 0, checkbox)
+
     def on_push_data_type_update_btn(self):
+        self.all_data_type_list.clear()
+        name_list = []
+        is_3d_vector_list = []
+        root = self.all_data_type_tree_widget.invisibleRootItem()
+        for i in range(root.childCount()):
+            item = root.child(i)
+            checkbox = self.all_data_type_tree_widget.itemWidget(item, 0)
+            if checkbox.isChecked():
+                dt_info = data_type_db.DATA_TYPE_DB[data_type_db.DATA_TYPE_IDX[checkbox.text()]]
+                if dt_info['is_v'] == 'V':
+                    self.all_data_type_list.insert(0, dt_info)
+                else:
+                    self.all_data_type_list.append(dt_info)
+            # for j in range(item.childCount()):
+            #     child = item.child(j)
+
         self.ui_label_list_static.clear()
         self.ui_dict_list.clear()
         # TODO 标量矢量自动排序
-        self.all_data_type_list = ['加速度', '角速度', '温度']
-        data_type_is_3d_vector = [True, True, False]
-        assert len(self.all_data_type_list) == len(data_type_is_3d_vector)
         # 为lcd添加矢量label
         scalar_count = 0
         i = 0
-        for v_name, is_v in zip(self.all_data_type_list, data_type_is_3d_vector):
-            if is_v:
-                self.ui_label_list_static.append((self.data_labels_ui[i], v_name))
+        for dt in self.all_data_type_list:
+            if dt['is_v'] == 'V':
+                self.ui_label_list_static.append((self.lcd_top_labels_ui[i], dt['name']))
                 i += 1
             else:
                 scalar_count += 1
         # 为lcd添加标量label
         while scalar_count > 0:
-            self.ui_label_list_static.append((self.data_labels_ui[i], '标量'))
+            self.ui_label_list_static.append((self.lcd_top_labels_ui[i], '标量'))
             i += 1
             scalar_count -= 3
-        scalar_idx = 0    # 标量
-        vector_idx = 0    # 矢量
+        scalar_idx = 0  # 标量
+        vector_idx = 0  # 矢量
         lcd_idx = 0
         chart_time_idx = 0
         chart_freq_idx = 0
-        for data_type_name, is_v in zip(self.all_data_type_list, data_type_is_3d_vector):
-            if is_v:    # 只有矢量在此初始化label名称，标量送入标量区内
+        for dt in self.all_data_type_list:
+            if dt['is_v'] == 'V':  # 只有矢量在此初始化label名称，标量送入标量区内
                 for j, v_name in enumerate(['X', 'Y', 'Z']):
-                    ui_dict = {'data_name': data_type_name+v_name}
+                    ui_dict = {'data_name': dt['name'] + '-' + v_name}
                     if True:
                         ui_dict['lcd'] = (lcd_idx, j)
-                        ui_dict['lcd_label_name'] = v_name + ' '    # 加空格是为了调整布局
+                        ui_dict['lcd_label_name'] = v_name + ' '  # 加空格是为了调整布局
                     if True:
                         ui_dict['chart_time'] = chart_time_idx
                         ui_dict['chart_time_locate'] = [0, chart_time_idx]
@@ -297,10 +316,10 @@ class DataUiManager:
                     lcd_idx += 1
 
             else:
-                ui_dict = {'data_name': data_type_name}
+                ui_dict = {'data_name': dt['name']}
                 if True:
                     ui_dict['lcd'] = (int(lcd_idx + scalar_idx / 3), scalar_idx % 3)
-                    ui_dict['lcd_label_name'] = data_type_name + ' '    # 加空格是为了调整布局
+                    ui_dict['lcd_label_name'] = dt['name'] + ' '  # 加空格是为了调整布局
                 if True:
                     ui_dict['chart_time'] = chart_time_idx
                     ui_dict['chart_time_locate'] = [0, chart_time_idx]
@@ -312,4 +331,4 @@ class DataUiManager:
 
                 self.ui_dict_list.append(ui_dict)
                 scalar_idx += 1
-        self.bound_data_and_ui()
+        self._bound_data_and_ui()

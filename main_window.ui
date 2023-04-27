@@ -6,1183 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1222</width>
-    <height>836</height>
+    <width>1792</width>
+    <height>986</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Qt Material</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="0,0,0">
+   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="0,0">
     <property name="sizeConstraint">
      <enum>QLayout::SetDefaultConstraint</enum>
     </property>
-    <item row="1" column="0" colspan="3">
-     <widget class="QTabWidget" name="tab_down_2">
-      <property name="maximumSize">
+    <item row="0" column="0" rowspan="2">
+     <widget class="QTabWidget" name="tab_left">
+      <property name="minimumSize">
        <size>
-        <width>16777215</width>
-        <height>250</height>
+        <width>250</width>
+        <height>0</height>
        </size>
       </property>
-      <property name="tabPosition">
-       <enum>QTabWidget::South</enum>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <property name="documentMode">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="tab_7">
-       <attribute name="title">
-        <string>Page</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_16">
-        <item row="0" column="0">
-         <widget class="QTabWidget" name="tab_down">
-          <property name="currentIndex">
-           <number>2</number>
-          </property>
-          <property name="usesScrollButtons">
-           <bool>true</bool>
-          </property>
-          <property name="tabsClosable">
-           <bool>false</bool>
-          </property>
-          <widget class="QWidget" name="com_tab_down">
-           <attribute name="title">
-            <string>1</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_6">
-            <item row="0" column="2">
-             <widget class="QListWidget" name="listWidget_2">
-              <property name="selectionBehavior">
-               <enum>QAbstractItemView::SelectRows</enum>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>64</width>
-                <height>64</height>
-               </size>
-              </property>
-              <property name="verticalScrollMode">
-               <enum>QAbstractItemView::ScrollPerPixel</enum>
-              </property>
-              <property name="movement">
-               <enum>QListView::Static</enum>
-              </property>
-              <property name="flow">
-               <enum>QListView::TopToBottom</enum>
-              </property>
-              <property name="isWrapping" stdset="0">
-               <bool>false</bool>
-              </property>
-              <property name="resizeMode">
-               <enum>QListView::Fixed</enum>
-              </property>
-              <property name="layoutMode">
-               <enum>QListView::Batched</enum>
-              </property>
-              <property name="spacing">
-               <number>15</number>
-              </property>
-              <property name="viewMode">
-               <enum>QListView::ListMode</enum>
-              </property>
-              <property name="selectionRectVisible">
-               <bool>false</bool>
-              </property>
-              <property name="sortingEnabled">
-               <bool>true</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string>New Item</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>New Item</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>New Item</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QTreeWidget" name="treeWidget">
-              <column>
-               <property name="text">
-                <string>Material Tree</string>
-               </property>
-              </column>
-              <item>
-               <property name="text">
-                <string>Tree #1</string>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Subitem #1</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Subitem #2</string>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>New Subitem</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>New Item</string>
-                 </property>
-                </item>
-               </item>
-              </item>
-              <item>
-               <property name="text">
-                <string>Tree #2</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Subitem #4</string>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Subitem #41</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Subitem #42</string>
-                </property>
-               </item>
-              </item>
-              <item>
-               <property name="text">
-                <string>Subitem #5</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Tree #3</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Tree #4</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QSplitter" name="splitter">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <widget class="QFrame" name="frame">
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_5">
-                <item row="0" column="0">
-                 <widget class="QSplitter" name="splitter_3">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                  <widget class="QFrame" name="frame_3">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_12">
-                    <item row="0" column="0">
-                     <widget class="QScrollBar" name="horizontalScrollBar_2">
-                      <property name="value">
-                       <number>50</number>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QFrame" name="frame_4">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_15">
-                    <item row="0" column="0">
-                     <widget class="QSlider" name="horizontalSlider_2">
-                      <property name="value">
-                       <number>50</number>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QFrame" name="frame_5">
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_19">
-                    <item row="0" column="0">
-                     <widget class="QProgressBar" name="progressBar_2">
-                      <property name="value">
-                       <number>24</number>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QFrame" name="frame_2">
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_13">
-                <item row="0" column="0">
-                 <widget class="QStackedWidget" name="stackedWidget">
-                  <property name="currentIndex">
-                   <number>0</number>
-                  </property>
-                  <widget class="QWidget" name="page_5">
-                   <layout class="QGridLayout" name="gridLayout_18">
-                    <item row="0" column="0">
-                     <spacer name="horizontalSpacer">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QScrollBar" name="verticalScrollBar_2">
-                      <property name="value">
-                       <number>50</number>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="2">
-                     <spacer name="horizontalSpacer_3">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>8</width>
-                        <height>108</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="0" column="3">
-                     <widget class="QSlider" name="verticalSlider_2">
-                      <property name="value">
-                       <number>50</number>
-                      </property>
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="4">
-                     <spacer name="horizontalSpacer_2">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>32</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="page_6"/>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="QTableWidget" name="tableWidget">
-              <property name="alternatingRowColors">
-               <bool>true</bool>
-              </property>
-              <attribute name="horizontalHeaderStretchLastSection">
-               <bool>true</bool>
-              </attribute>
-              <row>
-               <property name="text">
-                <string>Row-1</string>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="media-playback-start">
-                 <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string>Row-3</string>
-               </property>
-              </row>
-              <column>
-               <property name="text">
-                <string>Duration</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Datetime</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Name</string>
-               </property>
-              </column>
-              <item row="0" column="0">
-               <property name="text">
-                <string>00:05:02</string>
-               </property>
-               <property name="checkState">
-                <enum>Checked</enum>
-               </property>
-              </item>
-              <item row="0" column="1">
-               <property name="text">
-                <string>2020-04-27 17:31:34</string>
-               </property>
-              </item>
-              <item row="0" column="2">
-               <property name="text">
-                <string>Unamed-1</string>
-               </property>
-              </item>
-              <item row="1" column="0">
-               <property name="text">
-                <string>00:01:02</string>
-               </property>
-               <property name="checkState">
-                <enum>Checked</enum>
-               </property>
-              </item>
-              <item row="1" column="1">
-               <property name="text">
-                <string>2020-04-27 17:31:34</string>
-               </property>
-              </item>
-              <item row="1" column="2">
-               <property name="text">
-                <string>Unamed-2</string>
-               </property>
-              </item>
-              <item row="2" column="0">
-               <property name="text">
-                <string>00:07:02</string>
-               </property>
-               <property name="checkState">
-                <enum>Checked</enum>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-               </property>
-              </item>
-              <item row="2" column="1">
-               <property name="text">
-                <string>2020-04-27 17:31:34</string>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-               </property>
-              </item>
-              <item row="2" column="2">
-               <property name="text">
-                <string>Unamed-3</string>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-               </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="com_tab_down">
-           <attribute name="title">
-            <string>串口</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_16">
-            <item>
-             <widget class="QTextEdit" name="textEdit_3"/>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="warning_tab_down">
-           <attribute name="title">
-            <string>警告</string>
-           </attribute>
-          </widget>
-          <widget class="QWidget" name="data_tab_down">
-           <attribute name="title">
-            <string>数据</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_29">
-            <item row="0" column="0">
-             <widget class="QWidget" name="widget" native="true">
-              <layout class="QGridLayout" name="gridLayout_34"/>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_16">
-           <attribute name="title">
-            <string>Frame area</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_30">
-            <item row="0" column="0">
-             <widget class="QFrame" name="frame_6">
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_18">
-           <attribute name="title">
-            <string>Table</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_35">
-            <item row="0" column="0">
-             <widget class="QTableWidget" name="tableWidget_2">
-              <property name="alternatingRowColors">
-               <bool>true</bool>
-              </property>
-              <attribute name="horizontalHeaderStretchLastSection">
-               <bool>true</bool>
-              </attribute>
-              <row>
-               <property name="text">
-                <string>Row-1</string>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="media-playback-start">
-                 <normaloff>../../../../../.designer/backup</normaloff>../../../../../.designer/backup</iconset>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string>Row-3</string>
-               </property>
-              </row>
-              <column>
-               <property name="text">
-                <string>Duration</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Datetime</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Name</string>
-               </property>
-              </column>
-              <item row="0" column="0">
-               <property name="text">
-                <string>00:05:02</string>
-               </property>
-               <property name="checkState">
-                <enum>Checked</enum>
-               </property>
-              </item>
-              <item row="0" column="1">
-               <property name="text">
-                <string>2020-04-27 17:31:34</string>
-               </property>
-              </item>
-              <item row="0" column="2">
-               <property name="text">
-                <string>Unamed-1</string>
-               </property>
-              </item>
-              <item row="1" column="0">
-               <property name="text">
-                <string>00:01:02</string>
-               </property>
-               <property name="checkState">
-                <enum>Checked</enum>
-               </property>
-              </item>
-              <item row="1" column="1">
-               <property name="text">
-                <string>2020-04-27 17:31:34</string>
-               </property>
-              </item>
-              <item row="1" column="2">
-               <property name="text">
-                <string>Unamed-2</string>
-               </property>
-              </item>
-              <item row="2" column="0">
-               <property name="text">
-                <string>00:07:02</string>
-               </property>
-               <property name="checkState">
-                <enum>Checked</enum>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-               </property>
-              </item>
-              <item row="2" column="1">
-               <property name="text">
-                <string>2020-04-27 17:31:34</string>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-               </property>
-              </item>
-              <item row="2" column="2">
-               <property name="text">
-                <string>Unamed-3</string>
-               </property>
-               <property name="flags">
-                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-               </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_19">
-           <attribute name="title">
-            <string>Buttons colored</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_40">
-            <item row="0" column="0">
-             <widget class="QGroupBox" name="groupBox_7">
-              <property name="title">
-               <string>GroupBox</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_42">
-               <item row="0" column="0">
-                <layout class="QGridLayout" name="gridLayout_41">
-                 <item row="0" column="0">
-                  <widget class="QPushButton" name="pushButton_28">
-                   <property name="text">
-                    <string>Danger</string>
-                   </property>
-                   <property name="class" stdset="0">
-                    <string>danger</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QPushButton" name="pushButton_29">
-                   <property name="text">
-                    <string>Success</string>
-                   </property>
-                   <property name="flat">
-                    <bool>true</bool>
-                   </property>
-                   <property name="class" stdset="0">
-                    <string>success</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2">
-                  <widget class="QPushButton" name="pushButton_30">
-                   <property name="text">
-                    <string>Warning</string>
-                   </property>
-                   <property name="class" stdset="0">
-                    <string>warning</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="2">
-                  <widget class="QPushButton" name="pushButton_31">
-                   <property name="text">
-                    <string>Warning</string>
-                   </property>
-                   <property name="flat">
-                    <bool>true</bool>
-                   </property>
-                   <property name="class" stdset="0">
-                    <string>warning</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QPushButton" name="pushButton_32">
-                   <property name="text">
-                    <string>Success</string>
-                   </property>
-                   <property name="class" stdset="0">
-                    <string>success</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QPushButton" name="pushButton_33">
-                   <property name="text">
-                    <string>Danger</string>
-                   </property>
-                   <property name="flat">
-                    <bool>true</bool>
-                   </property>
-                   <property name="class" stdset="0">
-                    <string>danger</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item row="1" column="0">
-                <spacer name="verticalSpacer_9">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_6">
-           <attribute name="title">
-            <string>Tabs</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_10">
-            <item row="0" column="0">
-             <widget class="QTabWidget" name="tabWidget_5">
-              <property name="tabPosition">
-               <enum>QTabWidget::East</enum>
-              </property>
-              <property name="currentIndex">
-               <number>2</number>
-              </property>
-              <widget class="QWidget" name="tab_20">
-               <attribute name="title">
-                <string>Tab 1</string>
-               </attribute>
-               <layout class="QGridLayout" name="gridLayout_25">
-                <item row="0" column="0">
-                 <widget class="QTabWidget" name="tabWidget_6">
-                  <property name="tabPosition">
-                   <enum>QTabWidget::South</enum>
-                  </property>
-                  <property name="currentIndex">
-                   <number>5</number>
-                  </property>
-                  <widget class="QWidget" name="tab_22">
-                   <attribute name="title">
-                    <string>Tab 1</string>
-                   </attribute>
-                   <layout class="QGridLayout" name="gridLayout_28">
-                    <item row="0" column="0">
-                     <widget class="QTabWidget" name="tabWidget_7">
-                      <property name="tabPosition">
-                       <enum>QTabWidget::West</enum>
-                      </property>
-                      <widget class="QWidget" name="tab_24">
-                       <attribute name="title">
-                        <string>Tab 1</string>
-                       </attribute>
-                      </widget>
-                      <widget class="QWidget" name="tab_38">
-                       <attribute name="title">
-                        <string>Page</string>
-                       </attribute>
-                      </widget>
-                      <widget class="QWidget" name="tab_39">
-                       <attribute name="title">
-                        <string>Page</string>
-                       </attribute>
-                      </widget>
-                      <widget class="QWidget" name="tab_25">
-                       <attribute name="title">
-                        <string>Tab 2</string>
-                       </attribute>
-                      </widget>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="tab_23">
-                   <attribute name="title">
-                    <string>Tab 2</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_28">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_29">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_30">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_31">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_32">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_33">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_34">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_35">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_36">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                  <widget class="QWidget" name="tab_37">
-                   <attribute name="title">
-                    <string>Page</string>
-                   </attribute>
-                  </widget>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="tab_26">
-               <attribute name="title">
-                <string>Page</string>
-               </attribute>
-              </widget>
-              <widget class="QWidget" name="tab_21">
-               <attribute name="title">
-                <string>Tab 2</string>
-               </attribute>
-              </widget>
-              <widget class="QWidget" name="tab_27">
-               <attribute name="title">
-                <string>Page</string>
-               </attribute>
-              </widget>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_14">
-           <attribute name="title">
-            <string>Inputs</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_43">
-            <item row="0" column="0">
-             <layout class="QVBoxLayout" name="verticalLayout_4">
-              <item>
-               <widget class="QComboBox" name="comboBox_8">
-                <item>
-                 <property name="text">
-                  <string>New Item</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>New Item</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>New Item</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>New Item</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>New Item</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>New Item</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_10">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="0" column="1">
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <item>
-               <widget class="QFontComboBox" name="fontComboBox"/>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_11">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="0" column="2">
-             <layout class="QVBoxLayout" name="verticalLayout_6">
-              <item>
-               <widget class="QLineEdit" name="lineEdit_5"/>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_12">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="0" column="3">
-             <layout class="QVBoxLayout" name="verticalLayout_8">
-              <item>
-               <widget class="QSpinBox" name="spinBox_3"/>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_13">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="0" column="4">
-             <layout class="QVBoxLayout" name="verticalLayout_9">
-              <item>
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_14">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="0" column="5">
-             <layout class="QVBoxLayout" name="verticalLayout_10">
-              <item>
-               <widget class="QTimeEdit" name="timeEdit_2"/>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_15">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="0" column="6">
-             <layout class="QVBoxLayout" name="verticalLayout_11">
-              <item>
-               <widget class="QDateEdit" name="dateEdit_2"/>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_16">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="0" column="7">
-             <layout class="QVBoxLayout" name="verticalLayout_5">
-              <item>
-               <widget class="QDateTimeEdit" name="dateTimeEdit_2"/>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_17">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_4">
-           <attribute name="title">
-            <string>Page</string>
-           </attribute>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_17">
-       <attribute name="title">
-        <string>Lines</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_31">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <item row="0" column="0">
-         <widget class="QFrame" name="frame_7">
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_33" columnstretch="1,1">
-           <item row="0" column="0">
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <item>
-              <widget class="Line" name="line_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="Line" name="line_3">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="Line" name="line">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="0" column="1">
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <item>
-              <widget class="Line" name="line_4">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="Line" name="line_5">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="Line" name="line_6">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_8">
-       <attribute name="title">
-        <string>Page</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_32">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_9">
-       <attribute name="title">
-        <string>Page</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="tab_10">
-       <attribute name="title">
-        <string>Long Page Name</string>
-       </attribute>
-      </widget>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QSplitter" name="splitter_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QTabWidget" name="tab_left">
       <property name="maximumSize">
        <size>
         <width>250</width>
@@ -1196,7 +39,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="com_tab">
        <attribute name="title">
@@ -1421,141 +264,220 @@
        <attribute name="title">
         <string>数据</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_14">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QGroupBox" name="data_type_btn_groupBox">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>200</height>
-           </size>
+         <layout class="QVBoxLayout" name="verticalLayout_20" stretch="0,0,0,0">
+          <property name="spacing">
+           <number>5</number>
           </property>
-          <property name="title">
-           <string>数据类型</string>
-          </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-          <property name="class" stdset="0">
-           <string>fill_background</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_38">
-           <item row="0" column="0">
-            <layout class="QVBoxLayout" name="data_type_btn_layout"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="data_type_update_btn">
-             <property name="text">
-              <string>更新</string>
+          <item>
+           <widget class="QGroupBox" name="data_type_btn_groupBox">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>已展示</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="class" stdset="0">
+             <string>fill_background</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_38">
+             <property name="leftMargin">
+              <number>2</number>
              </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_4">
-          <property name="title">
-           <string>待选数据类型</string>
-          </property>
-          <property name="checkable">
-           <bool>false</bool>
-          </property>
-          <property name="class" stdset="0">
-           <string>fill_background</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_36">
-           <item row="0" column="0">
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
              <property name="spacing">
-              <number>3</number>
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <layout class="QVBoxLayout" name="data_type_btn_layout"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_4">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>所有</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <property name="class" stdset="0">
+             <string>fill_background</string>
+            </property>
+            <layout class="QVBoxLayout" name="all_data_type_vLayout">
+             <property name="leftMargin">
+              <number>2</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
              </property>
              <item>
-              <widget class="QTextEdit" name="textEdit_2">
+              <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
+               <property name="spacing">
+                <number>2</number>
+               </property>
+               <property name="sizeConstraint">
+                <enum>QLayout::SetDefaultConstraint</enum>
+               </property>
+               <item>
+                <widget class="QTextEdit" name="textEdit_2">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>26</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>26</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">padding-top: 0px; padding-bottom: 0px;</string>
+                 </property>
+                 <property name="verticalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
+                 <property name="lineWrapMode">
+                  <enum>QTextEdit::NoWrap</enum>
+                 </property>
+                 <property name="acceptRichText">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="maximumSize">
+                  <size>
+                   <width>26</width>
+                   <height>26</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <kerning>false</kerning>
+                  </font>
+                 </property>
+                 <property name="inputMethodHints">
+                  <set>Qt::ImhNone</set>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>200</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>详情</string>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_17">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>2</number>
+             </property>
+             <property name="topMargin">
+              <number>2</number>
+             </property>
+             <property name="rightMargin">
+              <number>2</number>
+             </property>
+             <property name="bottomMargin">
+              <number>2</number>
+             </property>
+             <item>
+              <widget class="QTextBrowser" name="textBrowser">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
-                 <height>26</height>
+                 <height>100</height>
                 </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>26</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">padding-top: 0px; padding-bottom: 0px;</string>
-               </property>
-               <property name="verticalScrollBarPolicy">
-                <enum>Qt::ScrollBarAlwaysOff</enum>
-               </property>
-               <property name="horizontalScrollBarPolicy">
-                <enum>Qt::ScrollBarAlwaysOff</enum>
-               </property>
-               <property name="lineWrapMode">
-                <enum>QTextEdit::NoWrap</enum>
-               </property>
-               <property name="acceptRichText">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton">
-               <property name="maximumSize">
-                <size>
-                 <width>26</width>
-                 <height>26</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <kerning>false</kerning>
-                </font>
-               </property>
-               <property name="inputMethodHints">
-                <set>Qt::ImhNone</set>
-               </property>
-               <property name="text">
-                <string/>
                </property>
               </widget>
              </item>
             </layout>
-           </item>
-           <item row="2" column="0">
-            <widget class="QTreeWidget" name="data_type_treeWidget">
-             <column>
-              <property name="text">
-               <string>Material Tree</string>
-              </property>
-             </column>
-             <item>
-              <property name="text">
-               <string>Tree #1</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Tree #2</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="data_type_update_btn">
+            <property name="text">
+             <string>更新</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
      </widget>
     </item>
-    <item row="0" column="2">
+    <item row="0" column="1">
      <widget class="QTabWidget" name="tab_right">
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
@@ -1589,8 +511,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>543</width>
-             <height>414</height>
+             <width>1049</width>
+             <height>564</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_15">
@@ -1645,7 +567,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Y </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1691,7 +613,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>X </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1705,7 +627,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Z </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1713,11 +635,6 @@
               </item>
               <item row="0" column="0">
                <widget class="QLabel" name="data1_label">
-                <property name="font">
-                 <font>
-                  <pointsize>20</pointsize>
-                 </font>
-                </property>
                 <property name="text">
                  <string>data1</string>
                 </property>
@@ -1735,7 +652,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Y </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1765,7 +682,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Z </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1795,7 +712,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>X </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1829,7 +746,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Y </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1859,7 +776,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Z </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1889,7 +806,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>X </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1923,7 +840,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Z </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1937,7 +854,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>X </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -1951,7 +868,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Y </string>
+                   <string>? </string>
                   </property>
                  </widget>
                 </item>
@@ -2031,8 +948,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>543</width>
-             <height>414</height>
+             <width>1049</width>
+             <height>564</height>
             </rect>
            </property>
           </widget>
@@ -2058,8 +975,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>543</width>
-             <height>414</height>
+             <width>1049</width>
+             <height>564</height>
             </rect>
            </property>
           </widget>
@@ -2070,6 +987,1162 @@
       <widget class="QWidget" name="vcom_tab_right">
        <attribute name="title">
         <string>模拟单片机</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QTabWidget" name="tab_down_2">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>250</height>
+       </size>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::South</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="documentMode">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="tab_94">
+       <attribute name="title">
+        <string>Page</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_74">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tab_down_4">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="usesScrollButtons">
+           <bool>true</bool>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="com_tab_down_7">
+           <attribute name="title">
+            <string>1</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_75">
+            <item row="0" column="2">
+             <widget class="QListWidget" name="listWidget_5">
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>64</width>
+                <height>64</height>
+               </size>
+              </property>
+              <property name="verticalScrollMode">
+               <enum>QAbstractItemView::ScrollPerPixel</enum>
+              </property>
+              <property name="movement">
+               <enum>QListView::Static</enum>
+              </property>
+              <property name="flow">
+               <enum>QListView::TopToBottom</enum>
+              </property>
+              <property name="isWrapping" stdset="0">
+               <bool>false</bool>
+              </property>
+              <property name="resizeMode">
+               <enum>QListView::Fixed</enum>
+              </property>
+              <property name="layoutMode">
+               <enum>QListView::Batched</enum>
+              </property>
+              <property name="spacing">
+               <number>15</number>
+              </property>
+              <property name="viewMode">
+               <enum>QListView::ListMode</enum>
+              </property>
+              <property name="selectionRectVisible">
+               <bool>false</bool>
+              </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
+              <item>
+               <property name="text">
+                <string>New Item</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>New Item</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>New Item</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QTreeWidget" name="treeWidget_4">
+              <column>
+               <property name="text">
+                <string>Material Tree</string>
+               </property>
+              </column>
+              <item>
+               <property name="text">
+                <string>Tree #1</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Subitem #1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Subitem #2</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>New Subitem</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>New Item</string>
+                 </property>
+                </item>
+               </item>
+              </item>
+              <item>
+               <property name="text">
+                <string>Tree #2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Subitem #4</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Subitem #41</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Subitem #42</string>
+                </property>
+               </item>
+              </item>
+              <item>
+               <property name="text">
+                <string>Subitem #5</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Tree #3</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Tree #4</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QSplitter" name="splitter_7">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <widget class="QFrame" name="frame_21">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_76">
+                <item row="0" column="0">
+                 <widget class="QSplitter" name="splitter_8">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <widget class="QFrame" name="frame_22">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_77">
+                    <item row="0" column="0">
+                     <widget class="QScrollBar" name="horizontalScrollBar_5">
+                      <property name="value">
+                       <number>50</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QFrame" name="frame_23">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_78">
+                    <item row="0" column="0">
+                     <widget class="QSlider" name="horizontalSlider_5">
+                      <property name="value">
+                       <number>50</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QFrame" name="frame_24">
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_79">
+                    <item row="0" column="0">
+                     <widget class="QProgressBar" name="progressBar_5">
+                      <property name="value">
+                       <number>24</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QFrame" name="frame_25">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_80">
+                <item row="0" column="0">
+                 <widget class="QStackedWidget" name="stackedWidget_4">
+                  <property name="currentIndex">
+                   <number>0</number>
+                  </property>
+                  <widget class="QWidget" name="page_11">
+                   <layout class="QGridLayout" name="gridLayout_81">
+                    <item row="0" column="0">
+                     <spacer name="horizontalSpacer_10">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QScrollBar" name="verticalScrollBar_5">
+                      <property name="value">
+                       <number>50</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="2">
+                     <spacer name="horizontalSpacer_11">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>8</width>
+                        <height>108</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="0" column="3">
+                     <widget class="QSlider" name="verticalSlider_5">
+                      <property name="value">
+                       <number>50</number>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="4">
+                     <spacer name="horizontalSpacer_12">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>32</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page_12"/>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QTableWidget" name="tableWidget_7">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
+              <row>
+               <property name="text">
+                <string>Row-1</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset theme="media-playback-start">
+                 <normaloff>../../../../../../.designer/backup</normaloff>../../../../../../.designer/backup</iconset>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Row-3</string>
+               </property>
+              </row>
+              <column>
+               <property name="text">
+                <string>Duration</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Datetime</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Name</string>
+               </property>
+              </column>
+              <item row="0" column="0">
+               <property name="text">
+                <string>00:05:02</string>
+               </property>
+               <property name="checkState">
+                <enum>Checked</enum>
+               </property>
+              </item>
+              <item row="0" column="1">
+               <property name="text">
+                <string>2020-04-27 17:31:34</string>
+               </property>
+              </item>
+              <item row="0" column="2">
+               <property name="text">
+                <string>Unamed-1</string>
+               </property>
+              </item>
+              <item row="1" column="0">
+               <property name="text">
+                <string>00:01:02</string>
+               </property>
+               <property name="checkState">
+                <enum>Checked</enum>
+               </property>
+              </item>
+              <item row="1" column="1">
+               <property name="text">
+                <string>2020-04-27 17:31:34</string>
+               </property>
+              </item>
+              <item row="1" column="2">
+               <property name="text">
+                <string>Unamed-2</string>
+               </property>
+              </item>
+              <item row="2" column="0">
+               <property name="text">
+                <string>00:07:02</string>
+               </property>
+               <property name="checkState">
+                <enum>Checked</enum>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+               </property>
+              </item>
+              <item row="2" column="1">
+               <property name="text">
+                <string>2020-04-27 17:31:34</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+               </property>
+              </item>
+              <item row="2" column="2">
+               <property name="text">
+                <string>Unamed-3</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="com_tab_down_8">
+           <attribute name="title">
+            <string>串口</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_39">
+            <item>
+             <widget class="QTextEdit" name="textEdit_6"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="warning_tab_down_4">
+           <attribute name="title">
+            <string>警告</string>
+           </attribute>
+          </widget>
+          <widget class="QWidget" name="data_tab_down_4">
+           <attribute name="title">
+            <string>数据</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_82">
+            <item row="0" column="0">
+             <widget class="QWidget" name="widget_4" native="true">
+              <layout class="QGridLayout" name="gridLayout_83"/>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_95">
+           <attribute name="title">
+            <string>Frame area</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_84">
+            <item row="0" column="0">
+             <widget class="QFrame" name="frame_26">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_96">
+           <attribute name="title">
+            <string>Table</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_85">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableWidget_8">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
+              <row>
+               <property name="text">
+                <string>Row-1</string>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset theme="media-playback-start">
+                 <normaloff>../../../../../../.designer/backup</normaloff>../../../../../../.designer/backup</iconset>
+               </property>
+              </row>
+              <row>
+               <property name="text">
+                <string>Row-3</string>
+               </property>
+              </row>
+              <column>
+               <property name="text">
+                <string>Duration</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Datetime</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Name</string>
+               </property>
+              </column>
+              <item row="0" column="0">
+               <property name="text">
+                <string>00:05:02</string>
+               </property>
+               <property name="checkState">
+                <enum>Checked</enum>
+               </property>
+              </item>
+              <item row="0" column="1">
+               <property name="text">
+                <string>2020-04-27 17:31:34</string>
+               </property>
+              </item>
+              <item row="0" column="2">
+               <property name="text">
+                <string>Unamed-1</string>
+               </property>
+              </item>
+              <item row="1" column="0">
+               <property name="text">
+                <string>00:01:02</string>
+               </property>
+               <property name="checkState">
+                <enum>Checked</enum>
+               </property>
+              </item>
+              <item row="1" column="1">
+               <property name="text">
+                <string>2020-04-27 17:31:34</string>
+               </property>
+              </item>
+              <item row="1" column="2">
+               <property name="text">
+                <string>Unamed-2</string>
+               </property>
+              </item>
+              <item row="2" column="0">
+               <property name="text">
+                <string>00:07:02</string>
+               </property>
+               <property name="checkState">
+                <enum>Checked</enum>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+               </property>
+              </item>
+              <item row="2" column="1">
+               <property name="text">
+                <string>2020-04-27 17:31:34</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+               </property>
+              </item>
+              <item row="2" column="2">
+               <property name="text">
+                <string>Unamed-3</string>
+               </property>
+               <property name="flags">
+                <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_97">
+           <attribute name="title">
+            <string>Buttons colored</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_86">
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="groupBox_10">
+              <property name="title">
+               <string>GroupBox</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_87">
+               <item row="0" column="0">
+                <layout class="QGridLayout" name="gridLayout_88">
+                 <item row="0" column="0">
+                  <widget class="QPushButton" name="pushButton_46">
+                   <property name="text">
+                    <string>Danger</string>
+                   </property>
+                   <property name="class" stdset="0">
+                    <string>danger</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QPushButton" name="pushButton_47">
+                   <property name="text">
+                    <string>Success</string>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                   <property name="class" stdset="0">
+                    <string>success</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QPushButton" name="pushButton_48">
+                   <property name="text">
+                    <string>Warning</string>
+                   </property>
+                   <property name="class" stdset="0">
+                    <string>warning</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QPushButton" name="pushButton_49">
+                   <property name="text">
+                    <string>Warning</string>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                   <property name="class" stdset="0">
+                    <string>warning</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QPushButton" name="pushButton_50">
+                   <property name="text">
+                    <string>Success</string>
+                   </property>
+                   <property name="class" stdset="0">
+                    <string>success</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QPushButton" name="pushButton_51">
+                   <property name="text">
+                    <string>Danger</string>
+                   </property>
+                   <property name="flat">
+                    <bool>true</bool>
+                   </property>
+                   <property name="class" stdset="0">
+                    <string>danger</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="1" column="0">
+                <spacer name="verticalSpacer_36">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_98">
+           <attribute name="title">
+            <string>Tabs</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_89">
+            <item row="0" column="0">
+             <widget class="QTabWidget" name="tabWidget_14">
+              <property name="tabPosition">
+               <enum>QTabWidget::East</enum>
+              </property>
+              <property name="currentIndex">
+               <number>2</number>
+              </property>
+              <widget class="QWidget" name="tab_99">
+               <attribute name="title">
+                <string>Tab 1</string>
+               </attribute>
+               <layout class="QGridLayout" name="gridLayout_90">
+                <item row="0" column="0">
+                 <widget class="QTabWidget" name="tabWidget_15">
+                  <property name="tabPosition">
+                   <enum>QTabWidget::South</enum>
+                  </property>
+                  <property name="currentIndex">
+                   <number>5</number>
+                  </property>
+                  <widget class="QWidget" name="tab_100">
+                   <attribute name="title">
+                    <string>Tab 1</string>
+                   </attribute>
+                   <layout class="QGridLayout" name="gridLayout_91">
+                    <item row="0" column="0">
+                     <widget class="QTabWidget" name="tabWidget_16">
+                      <property name="tabPosition">
+                       <enum>QTabWidget::West</enum>
+                      </property>
+                      <widget class="QWidget" name="tab_101">
+                       <attribute name="title">
+                        <string>Tab 1</string>
+                       </attribute>
+                      </widget>
+                      <widget class="QWidget" name="tab_102">
+                       <attribute name="title">
+                        <string>Page</string>
+                       </attribute>
+                      </widget>
+                      <widget class="QWidget" name="tab_103">
+                       <attribute name="title">
+                        <string>Page</string>
+                       </attribute>
+                      </widget>
+                      <widget class="QWidget" name="tab_104">
+                       <attribute name="title">
+                        <string>Tab 2</string>
+                       </attribute>
+                      </widget>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="tab_105">
+                   <attribute name="title">
+                    <string>Tab 2</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_106">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_107">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_108">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_109">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_110">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_111">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_112">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_113">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_114">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                  <widget class="QWidget" name="tab_115">
+                   <attribute name="title">
+                    <string>Page</string>
+                   </attribute>
+                  </widget>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_116">
+               <attribute name="title">
+                <string>Page</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="tab_117">
+               <attribute name="title">
+                <string>Tab 2</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="tab_118">
+               <attribute name="title">
+                <string>Page</string>
+               </attribute>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_119">
+           <attribute name="title">
+            <string>Inputs</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_92">
+            <item row="0" column="0">
+             <layout class="QVBoxLayout" name="verticalLayout_40">
+              <item>
+               <widget class="QComboBox" name="comboBox_11">
+                <item>
+                 <property name="text">
+                  <string>New Item</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>New Item</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>New Item</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>New Item</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>New Item</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>New Item</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_37">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="1">
+             <layout class="QVBoxLayout" name="verticalLayout_41">
+              <item>
+               <widget class="QFontComboBox" name="fontComboBox_4"/>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_38">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="2">
+             <layout class="QVBoxLayout" name="verticalLayout_42">
+              <item>
+               <widget class="QLineEdit" name="lineEdit_8"/>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_39">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="3">
+             <layout class="QVBoxLayout" name="verticalLayout_43">
+              <item>
+               <widget class="QSpinBox" name="spinBox_6"/>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_40">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="4">
+             <layout class="QVBoxLayout" name="verticalLayout_44">
+              <item>
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_41">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="5">
+             <layout class="QVBoxLayout" name="verticalLayout_45">
+              <item>
+               <widget class="QTimeEdit" name="timeEdit_5"/>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_42">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="6">
+             <layout class="QVBoxLayout" name="verticalLayout_46">
+              <item>
+               <widget class="QDateEdit" name="dateEdit_5"/>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_43">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="7">
+             <layout class="QVBoxLayout" name="verticalLayout_47">
+              <item>
+               <widget class="QDateTimeEdit" name="dateTimeEdit_5"/>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_44">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_120">
+           <attribute name="title">
+            <string>Page</string>
+           </attribute>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_121">
+       <attribute name="title">
+        <string>Lines</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_93">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QFrame" name="frame_27">
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_94" columnstretch="1,1">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_48">
+             <item>
+              <widget class="Line" name="line_13">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line_14">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line_15">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="Line" name="line_16">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line_17">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line_18">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_122">
+       <attribute name="title">
+        <string>Page</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_95">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_123">
+       <attribute name="title">
+        <string>Page</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_124">
+       <attribute name="title">
+        <string>Long Page Name</string>
        </attribute>
       </widget>
      </widget>
@@ -2150,7 +2223,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1222</width>
+     <width>1792</width>
      <height>24</height>
     </rect>
    </property>
@@ -2456,7 +2529,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionsubmenu">
    <property name="icon">
     <iconset theme="document-new">
-     <normaloff>../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../.designer/backup/qt-material/examples/full_features</iconset>
+     <normaloff>../../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../../.designer/backup/qt-material/examples/full_features</iconset>
    </property>
    <property name="text">
     <string>New...</string>
@@ -2465,7 +2538,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionsubmenu_2">
    <property name="icon">
     <iconset theme="folder">
-     <normaloff>../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../.designer/backup/qt-material/examples/full_features</iconset>
+     <normaloff>../../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../../.designer/backup/qt-material/examples/full_features</iconset>
    </property>
    <property name="text">
     <string>Open...</string>
@@ -2474,7 +2547,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionsubmenu_3">
    <property name="icon">
     <iconset theme="document-save-as">
-     <normaloff>../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../.designer/backup/qt-material/examples/full_features</iconset>
+     <normaloff>../../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../../.designer/backup/qt-material/examples/full_features</iconset>
    </property>
    <property name="text">
     <string>Save as...</string>
@@ -2483,7 +2556,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionsubmenu_4">
    <property name="icon">
     <iconset theme="document-save">
-     <normaloff>../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../.designer/backup/qt-material/examples/full_features</iconset>
+     <normaloff>../../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../../.designer/backup/qt-material/examples/full_features</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -2497,7 +2570,7 @@ p, li { white-space: pre-wrap; }
   <action name="actionClose">
    <property name="icon">
     <iconset theme="window-close">
-     <normaloff>../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../.designer/backup/qt-material/examples/full_features</iconset>
+     <normaloff>../../../../../.designer/backup/qt-material/examples/full_features</normaloff>../../../../../.designer/backup/qt-material/examples/full_features</iconset>
    </property>
    <property name="text">
     <string>Close</string>
@@ -2505,38 +2578,10 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <tabstops>
-  <tabstop>tab_left</tabstop>
-  <tabstop>groupBox_3</tabstop>
-  <tabstop>checkBox</tabstop>
-  <tabstop>tab_down_2</tabstop>
-  <tabstop>tab_down</tabstop>
-  <tabstop>horizontalSlider_2</tabstop>
-  <tabstop>verticalSlider_2</tabstop>
-  <tabstop>treeWidget</tabstop>
-  <tabstop>listWidget_2</tabstop>
   <tabstop>tab_right</tabstop>
-  <tabstop>dateEdit_2</tabstop>
   <tabstop>listWidget</tabstop>
   <tabstop>textEdit</tabstop>
   <tabstop>plainTextEdit</tabstop>
-  <tabstop>groupBox_7</tabstop>
-  <tabstop>pushButton_28</tabstop>
-  <tabstop>pushButton_32</tabstop>
-  <tabstop>pushButton_30</tabstop>
-  <tabstop>pushButton_33</tabstop>
-  <tabstop>pushButton_29</tabstop>
-  <tabstop>pushButton_31</tabstop>
-  <tabstop>doubleSpinBox_3</tabstop>
-  <tabstop>timeEdit_2</tabstop>
-  <tabstop>dateTimeEdit_2</tabstop>
-  <tabstop>comboBox_8</tabstop>
-  <tabstop>tabWidget_6</tabstop>
-  <tabstop>fontComboBox</tabstop>
-  <tabstop>tabWidget_5</tabstop>
-  <tabstop>tabWidget_7</tabstop>
-  <tabstop>spinBox_3</tabstop>
-  <tabstop>tableWidget_2</tabstop>
-  <tabstop>lineEdit_5</tabstop>
  </tabstops>
  <resources/>
  <connections/>

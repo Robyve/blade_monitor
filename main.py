@@ -76,17 +76,9 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
         try:
             self.main.setWindowIcon(logo)
             self.main.actionToolbar.setIcon(logo)
-            [
-                self.main.listWidget_2.item(i).setIcon(logo_frame)
-                for i in range(self.main.listWidget_2.count())
-            ]
         except:
             self.main.window_icon = logo
             self.main.actionToolbar.icon = logo
-            [
-                setattr(self.main.listWidget_2.item(i), 'icon', logo_frame)
-                for i in range(self.main.listWidget_2.count)
-            ]
 
     def custom_styles(self):
         """"""
@@ -104,19 +96,6 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
                 )
                 tool_button.maximum_width = 150
                 tool_button.minimum_width = 150
-        try:
-            for r in range(self.main.tableWidget.rowCount()):
-                self.main.tableWidget.setRowHeight(r, 36)
-
-            for r in range(self.main.tableWidget_2.rowCount()):
-                self.main.tableWidget_2.setRowHeight(r, 36)
-
-        except:
-            for r in range(self.main.tableWidget.row_count):
-                self.main.tableWidget.set_row_height(r, 36)
-
-            for r in range(self.main.tableWidget_2.row_count):
-                self.main.tableWidget_2.set_row_height(r, 36)
 
     def init_widgets(self):
         self.port_manager = PortManager(self)
