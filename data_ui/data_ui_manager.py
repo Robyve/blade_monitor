@@ -8,7 +8,7 @@
 
 import numpy as np
 from PyQt5.QtCore import pyqtSignal, QThread, QSize
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QPalette
 from PyQt5.QtWidgets import QCheckBox, QTreeWidgetItem, QTreeWidget
 
 import ports
@@ -88,9 +88,12 @@ class DataUiManager:
         self._init_data_type_tree()
         self.on_push_data_type_update_btn()
 
-        self.data_type_select_counter = 0
+        self.DATA_TYPE_MAX_NUM = 3 * len(self.lcd_3_ui)
+        self.data_type_select_counter = 0   # data_type选择计数器，防止选取过多，布局盛不下
         self._bound_data_and_ui()
         self._init_data_type_tree()
+        self.ui.data_type_select_counter_label.setText(
+            f'已选取({self.data_type_select_counter}/{self.DATA_TYPE_MAX_NUM})个数据项')
 
         ui.data_type_update_btn.clicked.connect(self.on_push_data_type_update_btn)
 
@@ -265,26 +268,35 @@ class DataUiManager:
             self.all_data_type_tree_widget.setItemWidget(item, 0, checkbox)
 
     def on_tree_check_box_state_change_vector(self, state):
-        if self.data_type_select_counter + 3 > 3 * len(self.lcd_3_ui):
-            self.ui.data_type_update_btn.setEnabled(False)
-        else:
-            self.ui.data_type_update_btn.setEnabled(True)
         if state == 2:
             self.data_type_select_counter += 3
         else:
             self.data_type_select_counter -= 3
-
-    def on_tree_check_box_state_change_scalar(self, state):
-        if self.data_type_select_counter + 1 > 3 * len(self.lcd_3_ui):
+        if self.data_type_select_counter > self.DATA_TYPE_MAX_NUM:
             self.ui.data_type_update_btn.setEnabled(False)
+            self.ui.data_type_select_counter_label.setStyleSheet("color: #dc3545;")
         else:
             self.ui.data_type_update_btn.setEnabled(True)
+            self.ui.data_type_select_counter_label.setStyleSheet("color: #555555;")
+        self.ui.data_type_select_counter_label.setText(
+            f'已选取({self.data_type_select_counter}/{self.DATA_TYPE_MAX_NUM})个数据项')
+
+    def on_tree_check_box_state_change_scalar(self, state):
         if state == 2:
             self.data_type_select_counter += 1
         else:
             self.data_type_select_counter -= 1
+        if self.data_type_select_counter > self.DATA_TYPE_MAX_NUM:
+            self.ui.data_type_update_btn.setEnabled(False)
+            self.ui.data_type_select_counter_label.setStyleSheet("color: #dc3545;")
+        else:
+            self.ui.data_type_update_btn.setEnabled(True)
+            self.ui.data_type_select_counter_label.setStyleSheet("color: #555555;")
+        self.ui.data_type_select_counter_label.setText(
+            f'已选取({self.data_type_select_counter}/{self.DATA_TYPE_MAX_NUM})个数据项')
 
     def on_push_data_type_update_btn(self):
+        # TODO 单片机
         self.all_data_type_list.clear()
         root = self.all_data_type_tree_widget.invisibleRootItem()
         for i in range(root.childCount()):

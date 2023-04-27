@@ -24,6 +24,12 @@ def init_charts(scroll_area, locates, titles):
     # 创建容器，用于容纳所有的 chart_view
     container = QWidget(scroll_area)
     layout = QVBoxLayout(container)
+    # 确保布局被重新加载
+    if len(locates) == 0:
+        scroll_area.setWidget(container)
+        container.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        scroll_area.setWidgetResizable(True)
+        container.adjustSize()
     for lo, title in zip(locates, titles):
         series = QLineSeries()
         # 创建图表并添加系列
