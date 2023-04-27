@@ -10,7 +10,7 @@ import random
 import numpy as np
 from PyQt5.QtChart import QChart, QChartView, QLineSeries, QValueAxis
 from PyQt5.QtCore import QPointF, QMargins, Qt
-from PyQt5.QtGui import QPainter, QPen, QBrush, QColor
+from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import QSizePolicy, QWidget, QVBoxLayout
 from scipy.signal import find_peaks
 

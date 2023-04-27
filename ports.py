@@ -14,8 +14,10 @@ from PyQt5 import Qt, QtGui, QtCore
 from PyQt5.QtCore import QThread, QObject, QTimer, pyqtSignal
 from PyQt5.QtGui import QPixmap
 
-import data_ui.data_ui_manager as data_ui_manager
+import console.console_manager as console_manager
+from console.console_manager import ConsoleName
 from sound import sound
+from sound.sound import SoundType
 
 
 class SerialQThread(QThread):
@@ -54,8 +56,10 @@ class SerialQThread(QThread):
 class PortManager(QObject):
     data_ready_signal = pyqtSignal(str)
 
-    def __init__(self, ui):
+    def __init__(self, ui, _console_manager):
         super().__init__()
+        self.console_manager = _console_manager
+
         self.collect_dtime = 0.08  # 采样频率
 
         self.curr_serial = None  # 串口实例
@@ -91,8 +95,6 @@ class PortManager(QObject):
         self.baud_rate_combo.activated[str].connect(self.on_baud_rate_changed)
         self.com_btn.clicked.connect(self.on_push_com_btn)
 
-        self.sound_thread = None
-
     def on_comport_changed(self, com_port):
         self.curr_port = com_port
         print(f'selected{com_port}')
@@ -106,9 +108,10 @@ class PortManager(QObject):
                 self.curr_serial = serial.Serial(self.curr_port, self.curr_baud_rate, timeout=60)
             except Exception as e:
                 print(e)
+                self._set_com_info_label(f'连接失败: {self.curr_port}', 'main', 'warning')
+                self.console_manager.print_on(ConsoleName.PORT, f'连接失败: {self.curr_port}')
                 return
             self.com_btn.setText('断开')
-            self._set_com_info_label(f'连接到串口: {self.curr_port}', 'main', 'ok')
             self.open_status = 'opened'
             self.com_combo.setEnabled(False)
             self.baud_rate_combo.setEnabled(False)
@@ -117,8 +120,13 @@ class PortManager(QObject):
             self.serialthread.data_ready_signal.connect(self.handle_data_from_thread)
             self.serialthread.start()
 
+            self._set_com_info_label(f'启动串口: {self.curr_port}', 'main', 'ok')
+            self.console_manager.print_on(ConsoleName.PORT, f'启动串口: {self.curr_port}')
+            sound.play_sound(SoundType.PORT_OPEN)
+
         else:
             self.serialthread.stop()
+            self.console_manager.print_on(ConsoleName.PORT, f'串口{self.curr_port}即将关闭')
             self.curr_serial.close()
             self.curr_serial = None
             self.com_btn.setText('启动')
@@ -127,6 +135,7 @@ class PortManager(QObject):
             self.com_combo.setEnabled(True)
             self.baud_rate_combo.setEnabled(True)
             self.serialthread.stop()
+            self.console_manager.print_on(ConsoleName.PORT, f'串口已关闭')
 
     def update_serial_ports(self, is_init=False):
         new_port_list = list(serial.tools.list_ports.comports())
@@ -146,8 +155,8 @@ class PortManager(QObject):
                 self.new_connect_info_timer.timeout.connect(
                     lambda: self._set_com_info_label(f'', 'new_connect', ''))
                 self._set_com_info_label(f'新串口{new_com}', 'new_connect', 'info')
-                self.sound_thread = threading.Thread(target=sound.play_sound)
-                self.sound_thread.start()
+                self.console_manager.print_on(ConsoleName.PORT, f'新串口{new_com}')
+                sound.play_sound(SoundType.PORT_NEW)
                 self.new_connect_info_timer.start(1500)
 
             self.port_list = new_port_list
@@ -164,7 +173,11 @@ class PortManager(QObject):
                 self.curr_serial.close()
                 self.curr_serial = None
                 self.com_btn.setText('启动')
+
                 self._set_com_info_label('与串口的连接意外断开', 'main', 'warning')
+                self.console_manager.print_on(ConsoleName.PORT, '与串口的连接意外断开')
+                sound.play_sound(SoundType.PORT_ACCIDENT_DISCONNECT)
+
                 self.open_status = 'closed'
                 self.com_combo.setEnabled(True)
                 self.baud_rate_combo.setEnabled(True)
@@ -178,7 +191,8 @@ class PortManager(QObject):
         if self.curr_serial and self.curr_serial.isOpen():
             message = bytes.fromhex(message)
             self.curr_serial.write(message)
-            print(f'send to port: {message}')
+            print(f'发送到串口: {message}')
+            self.console_manager.print_on(ConsoleName.PORT, f'发送到串口: {message}')
 
     def _set_com_info_label(self, text, to_ui='main', icon=None):
         if to_ui == 'main':

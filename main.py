@@ -5,14 +5,15 @@ import logging
 from multiprocessing import freeze_support
 
 import numpy as np
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtCore import QTimer, Qt, QCoreApplication
-from PyQt5 import uic, QtWebEngineWidgets
-from PyQt5.QtGui import QIcon, QPainter
-from qt_material import apply_stylesheet, QtStyleTools, density
+from PyQt5 import uic
+from PyQt5.QtGui import QIcon
+from qt_material import apply_stylesheet, QtStyleTools
 
 from data_ui.data_ui_manager import DataUiManager
 from ports import PortManager
+from console.console_manager import ConsoleManager
 
 if hasattr(Qt, 'AA_ShareOpenGLContexts'):
     try:
@@ -52,14 +53,15 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
     def __init__(self):
         """Constructor"""
         super().__init__()
+        self.console_manager = None
         self.data_ui_manager = None
         self.main = uic.loadUi('main_window.ui', self)
         self.port_manager = None
 
         try:
-            self.main.setWindowTitle(f'STM32上位机-BJUT')
+            self.main.setWindowTitle(f'上位机')
         except:
-            self.main.window_title = f'STM32上位机-BJUT'
+            self.main.window_title = f'上位机'
 
         self.custom_styles()
         self.init_widgets()
@@ -81,7 +83,6 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
             self.main.actionToolbar.icon = logo
 
     def custom_styles(self):
-        """"""
         for i in range(self.main.toolBar_vertical.layout().count()):
 
             try:
@@ -98,7 +99,8 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
                 tool_button.minimum_width = 150
 
     def init_widgets(self):
-        self.port_manager = PortManager(self)
+        self.console_manager = ConsoleManager(self)
+        self.port_manager = PortManager(self, self.console_manager)
         self.data_ui_manager = DataUiManager(self, self.port_manager)
 
         # 生成具有一定周期性的随机序列
@@ -108,7 +110,6 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
             self.port_manager.send_hex_message('77 03 01 02 03')
 
         self.test_action.triggered.connect(test_port)
-
 
         def rand_add_data_2():
             # 设定随机序列的参数
@@ -133,13 +134,13 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
 
 
 T0 = 1000
+main_ui = None
 
 if __name__ == "__main__":
     def take_screenshot():
-        pixmap = frame.main.grab()
+        pixmap = main_ui.main.grab()
         pixmap.save(os.path.join('screenshots', f'{theme}.png'))
         print(f'Saving {theme}')
-
 
     if len(sys.argv) > 2:
         theme = sys.argv[2]
@@ -160,11 +161,11 @@ if __name__ == "__main__":
         extra=extra,
     )
 
-    frame = RuntimeStylesheets()
+    main_ui = RuntimeStylesheets()
     try:
-        frame.main.showMaximized()
+        main_ui.main.showMaximized()
     except:
-        frame.main.show_maximized()
+        main_ui.main.show_maximized()
 
     if hasattr(app, 'exec'):
         app.exec()

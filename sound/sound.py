@@ -8,16 +8,47 @@
 
 import platform
 import os
+import threading
+from enum import IntEnum
 
 
-def play_sound():
+class SoundType(IntEnum):
+    PORT_NEW = 0,
+    PORT_ACCIDENT_DISCONNECT = 1,
+    PORT_OPEN = 2
+
+
+sound_path_Darwin = [
+    '/System/Library/Sounds/Bottle.aiff',
+    '/System/Library/Sounds/Sosumi.aiff',
+    '/System/Library/Sounds/Ping.aiff'
+]
+
+sound_path_Linux = [
+    '/usr/share/sounds/freedesktop/stereo/complete.oga',
+]
+
+
+def play_sound(sound_type: SoundType):
+    t = threading.Thread(target=_play_sound, args=[sound_type])
+    t.start()
+
+
+def _play_sound(sound_type: SoundType):
+
     system = platform.system()
-    if system == 'Windows':
-        import winsound
-        winsound.PlaySound('SystemAsterisk', winsound.SND_ALIAS)
-    elif system == 'Darwin':
-        os.system('afplay /System/Library/Sounds/Bottle.aiff')
-    elif system == 'Linux':
-        os.system('aplay /usr/share/sounds/freedesktop/stereo/complete.oga')
-    else:
-        print('Unsupported platform')
+    try:
+        if system == 'Windows':
+            import winsound
+            sound_path_win = [
+                ('SystemAsterisk', winsound.SND_ALIAS)
+            ]
+            winsound.PlaySound(*sound_path_win[sound_type.value])
+        elif system == 'Darwin':
+            os.system(f'afplay {sound_path_Darwin[sound_type.value]}')
+        elif system == 'Linux':
+            os.system(f'aplay {sound_path_Linux[sound_type.value]}')
+        else:
+            print('Sound Unsupported platform')
+    except:
+        return
