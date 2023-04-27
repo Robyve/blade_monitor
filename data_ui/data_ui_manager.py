@@ -266,9 +266,9 @@ class DataUiManager:
 
     def on_tree_check_box_state_change_vector(self, state):
         if self.data_type_select_counter + 3 > 3 * len(self.lcd_3_ui):
-            self.ui.data_type_update_btn.setEnable(False)
+            self.ui.data_type_update_btn.setEnabled(False)
         else:
-            self.ui.data_type_update_btn.setEnable(True)
+            self.ui.data_type_update_btn.setEnabled(True)
         if state == 2:
             self.data_type_select_counter += 3
         else:
@@ -276,9 +276,9 @@ class DataUiManager:
 
     def on_tree_check_box_state_change_scalar(self, state):
         if self.data_type_select_counter + 1 > 3 * len(self.lcd_3_ui):
-            self.ui.data_type_update_btn.setEnable(False)
+            self.ui.data_type_update_btn.setEnabled(False)
         else:
-            self.ui.data_type_update_btn.setEnable(True)
+            self.ui.data_type_update_btn.setEnabled(True)
         if state == 2:
             self.data_type_select_counter += 1
         else:
