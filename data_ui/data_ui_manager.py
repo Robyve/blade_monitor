@@ -51,7 +51,7 @@ class DataUiManager:
                  port_manager: ports.PortManager):
         self.all_data_type_tree_widget = None
         self.DATA_BUFFER_MAX_SIZE = 400
-        self.FFT_COLLECT_RANGE = 200  # fft采样范围，属于少于该范围不进行fft
+        self.FFT_COLLECT_RANGE = 20  # fft采样范围，属于少于该范围不进行fft
         self.port_manager = port_manager
         self.ui = ui
         self.lcd_top_labels_ui = [
@@ -174,7 +174,6 @@ class DataUiManager:
         :param end_of_group: 是否是一次串口读取中的最后一组数据，如果是，进行额外的耗时操作
         :return:
         """
-        temp = []
         i = 0
         for d, uis in zip(datas, self._ui_bounder):
             for j, ui_info in enumerate(uis):
@@ -228,7 +227,7 @@ class DataUiManager:
     @staticmethod
     def calc_fft(signal):
         n = len(signal)
-        Fs = 1. / 1e-2  # 采样频率，TODO 统一
+        Fs = 5.  # 采样频率，TODO 统一
         fft_result = np.abs(np.fft.rfft(signal))
         freqs = np.fft.rfftfreq(n, d=1. / Fs)
         return freqs, fft_result

@@ -14,7 +14,7 @@ from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import QSizePolicy, QWidget, QVBoxLayout
 from scipy.signal import find_peaks
 
-charts_x_range = 100
+charts_x_range = 20
 charts_min_height = 300
 
 
@@ -64,6 +64,8 @@ def clear_chart_data(chart: QChart):
 
 
 def set_chart_datas(chart: QChart, x_list, y_list):
+    x_list = x_list[1:]
+    y_list = y_list[1:]
     s = chart.series()[0]
     s.clear()
     x_axis_max = 0.
@@ -98,14 +100,13 @@ def add_single_chart_data(chart: QChart, y):
     :return:
     """
     s = chart.series()[0]
-    x_axis_max = 0
-    x_axis_min = charts_x_range
+    x_axis_max = charts_x_range
+    x_axis_min = 0
     x = 0 if len(s.points()) == 0 else s.points()[-1].x() + 1
     if x >= charts_x_range:
         x_axis_min = x + 1 - charts_x_range
         x_axis_max = x + 1
         s.remove(0)
-
     y_axis_max = 1.
     y_axis_min = -1.
     for p in s.points():
