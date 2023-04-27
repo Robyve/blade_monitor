@@ -154,7 +154,7 @@ class PortManager(QObject):
                 self.new_connect_info_timer.setSingleShot(True)
                 self.new_connect_info_timer.timeout.connect(
                     lambda: self._set_com_info_label(f'', 'new_connect', ''))
-                self._set_com_info_label(f'新串口{new_com}', 'new_connect', 'info')
+                self._set_com_info_label(f'{new_com}', 'new_connect', 'info')
                 self.console_manager.print_on(ConsoleName.PORT, f'新串口{new_com}')
                 sound.play_sound(SoundType.PORT_NEW)
                 self.new_connect_info_timer.start(1500)

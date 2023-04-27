@@ -484,7 +484,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1152,11 +1152,6 @@
          </widget>
         </item>
        </layout>
-      </widget>
-      <widget class="QWidget" name="vcom_tab_right">
-       <attribute name="title">
-        <string>模拟单片机</string>
-       </attribute>
       </widget>
      </widget>
     </item>

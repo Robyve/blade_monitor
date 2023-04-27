@@ -174,6 +174,7 @@ class DataUiManager:
         :param end_of_group: 是否是一次串口读取中的最后一组数据，如果是，进行额外的耗时操作
         :return:
         """
+        temp = []
         i = 0
         for d, uis in zip(datas, self._ui_bounder):
             for j, ui_info in enumerate(uis):
@@ -345,7 +346,7 @@ class DataUiManager:
                         ui_dict['chart_time'] = chart_time_idx
                         ui_dict['chart_time_locate'] = [0, chart_time_idx]
                         chart_time_idx += 1
-                    if True:
+                    if dt['show_freq']:
                         ui_dict['chart_freq'] = chart_freq_idx
                         ui_dict['chart_freq_locate'] = [0, chart_freq_idx]
                         chart_freq_idx += 1
@@ -364,7 +365,7 @@ class DataUiManager:
                     ui_dict['chart_time'] = chart_time_idx
                     ui_dict['chart_time_locate'] = [0, chart_time_idx]
                     chart_time_idx += 1
-                if True:
+                if dt['show_freq']:
                     ui_dict['chart_freq'] = chart_freq_idx
                     ui_dict['chart_freq_locate'] = [0, chart_freq_idx]
                     chart_freq_idx += 1
