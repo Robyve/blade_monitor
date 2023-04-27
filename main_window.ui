@@ -520,6 +520,12 @@
              <layout class="QGridLayout" name="data_tab_right_gridLayout" rowstretch="0,1,0,1" columnstretch="0,0">
               <item row="2" column="1">
                <widget class="QLabel" name="data4_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>data4</string>
                 </property>
@@ -527,6 +533,12 @@
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="data3_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>data3</string>
                 </property>
@@ -534,6 +546,12 @@
               </item>
               <item row="0" column="1">
                <widget class="QLabel" name="data2_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>data2</string>
                 </property>
@@ -543,6 +561,18 @@
                <layout class="QGridLayout" name="gridLayout_14" columnstretch="0,2">
                 <item row="0" column="1">
                  <widget class="QLCDNumber" name="x2_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -573,6 +603,18 @@
                 </item>
                 <item row="2" column="1">
                  <widget class="QLCDNumber" name="z2_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -589,6 +631,18 @@
                 </item>
                 <item row="1" column="1">
                  <widget class="QLCDNumber" name="y2_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -635,6 +689,12 @@
               </item>
               <item row="0" column="0">
                <widget class="QLabel" name="data1_label">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>data1</string>
                 </property>
@@ -658,6 +718,18 @@
                 </item>
                 <item row="2" column="1">
                  <widget class="QLCDNumber" name="z4_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -688,6 +760,18 @@
                 </item>
                 <item row="1" column="1">
                  <widget class="QLCDNumber" name="y4_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -718,6 +802,18 @@
                 </item>
                 <item row="0" column="1">
                  <widget class="QLCDNumber" name="x4_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -752,6 +848,18 @@
                 </item>
                 <item row="2" column="1">
                  <widget class="QLCDNumber" name="z3_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -782,6 +890,18 @@
                 </item>
                 <item row="1" column="1">
                  <widget class="QLCDNumber" name="y3_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -812,6 +932,18 @@
                 </item>
                 <item row="0" column="1">
                  <widget class="QLCDNumber" name="x3_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -874,6 +1006,18 @@
                 </item>
                 <item row="2" column="1">
                  <widget class="QLCDNumber" name="z1_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -890,6 +1034,18 @@
                 </item>
                 <item row="1" column="1">
                  <widget class="QLCDNumber" name="y1_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>
@@ -906,6 +1062,18 @@
                 </item>
                 <item row="0" column="1">
                  <widget class="QLCDNumber" name="x1_lcd">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>70</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>70</height>
+                   </size>
+                  </property>
                   <property name="smallDecimalPoint">
                    <bool>true</bool>
                   </property>

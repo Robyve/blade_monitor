@@ -18,3 +18,8 @@ DATA_TYPE_DB = [
 ]
 
 DATA_TYPE_IDX = {dt['name']: i for i, dt in enumerate(DATA_TYPE_DB)}
+
+
+def get_data_type_from_name(name: str):
+    # TODO 异常值处理
+    return DATA_TYPE_DB[DATA_TYPE_IDX[name]]

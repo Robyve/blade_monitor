@@ -88,6 +88,7 @@ class DataUiManager:
         self._init_data_type_tree()
         self.on_push_data_type_update_btn()
 
+        self.data_type_select_counter = 0
         self._bound_data_and_ui()
         self._init_data_type_tree()
 
@@ -105,6 +106,13 @@ class DataUiManager:
             self.ui.data_type_btn_layout.removeItem(check_box_to_delete)
             if check_box_to_delete.widget():
                 check_box_to_delete.widget().deleteLater()
+
+        # 隐藏所有lcd，之后显示
+        for top_label, lcd_3, label_3 in zip(self.lcd_top_labels_ui, self.lcd_3_ui, self.lcd_3_sub_label_ui):
+            top_label.setHidden(True)
+            for lcd, label in zip(lcd_3, label_3):
+                lcd.setHidden(True)
+                label.setHidden(True)
 
         for dt in self.all_data_type_list:
             check_box = QCheckBox()
@@ -128,16 +136,13 @@ class DataUiManager:
                   ud.get('chart_time'),
                   ud.get('chart_freq'),
                   ]
-            for top_label, lcd_3, label_3 in zip(self.lcd_top_labels_ui, self.lcd_3_ui, self.lcd_3_sub_label_ui):
-                top_label.setVisible(False)
-                for lcd, label in zip(lcd_3, label_3):
-                    lcd.setVisible(False)
-                    label.setVisible(False)
             if ud.get('lcd') is not None:
                 lcd = ud.get('lcd')
                 c = ud.get('lcd_label_name')
                 assert c is not None
-                self.lcd_3_sub_label_ui[int(lcd[0])][lcd[1]].setVisible(True)
+                self.lcd_top_labels_ui[int(lcd[0])].setHidden(False)
+                self.lcd_3_ui[int(lcd[0])][lcd[1]].setHidden(False)
+                self.lcd_3_sub_label_ui[int(lcd[0])][lcd[1]].setHidden(False)
                 self.lcd_3_sub_label_ui[int(lcd[0])][lcd[1]].setText(c)
             if ud.get('chart_time') is not None:
                 c = ud.get('chart_time_locate')
@@ -252,19 +257,41 @@ class DataUiManager:
             checkbox = QCheckBox()
             checkbox.setText(dt['name'])
             checkbox.setFixedSize(QSize(250, 25))
+            if dt['is_v'] == 'V':
+                checkbox.stateChanged.connect(self.on_tree_check_box_state_change_vector)
+            else:
+                checkbox.stateChanged.connect(self.on_tree_check_box_state_change_scalar)
             self.all_data_type_tree_widget.addTopLevelItem(item)
             self.all_data_type_tree_widget.setItemWidget(item, 0, checkbox)
 
+    def on_tree_check_box_state_change_vector(self, state):
+        if self.data_type_select_counter + 3 > 3 * len(self.lcd_3_ui):
+            self.ui.data_type_update_btn.setEnable(False)
+        else:
+            self.ui.data_type_update_btn.setEnable(True)
+        if state == 2:
+            self.data_type_select_counter += 3
+        else:
+            self.data_type_select_counter -= 3
+
+    def on_tree_check_box_state_change_scalar(self, state):
+        if self.data_type_select_counter + 1 > 3 * len(self.lcd_3_ui):
+            self.ui.data_type_update_btn.setEnable(False)
+        else:
+            self.ui.data_type_update_btn.setEnable(True)
+        if state == 2:
+            self.data_type_select_counter += 1
+        else:
+            self.data_type_select_counter -= 1
+
     def on_push_data_type_update_btn(self):
         self.all_data_type_list.clear()
-        name_list = []
-        is_3d_vector_list = []
         root = self.all_data_type_tree_widget.invisibleRootItem()
         for i in range(root.childCount()):
             item = root.child(i)
             checkbox = self.all_data_type_tree_widget.itemWidget(item, 0)
             if checkbox.isChecked():
-                dt_info = data_type_db.DATA_TYPE_DB[data_type_db.DATA_TYPE_IDX[checkbox.text()]]
+                dt_info = data_type_db.get_data_type_from_name(checkbox.text())
                 if dt_info['is_v'] == 'V':
                     self.all_data_type_list.insert(0, dt_info)
                 else:
@@ -274,7 +301,7 @@ class DataUiManager:
 
         self.ui_label_list_static.clear()
         self.ui_dict_list.clear()
-        # TODO 标量矢量自动排序
+
         # 为lcd添加矢量label
         scalar_count = 0
         i = 0
@@ -284,6 +311,7 @@ class DataUiManager:
                 i += 1
             else:
                 scalar_count += 1
+
         # 为lcd添加标量label
         while scalar_count > 0:
             self.ui_label_list_static.append((self.lcd_top_labels_ui[i], '标量'))
@@ -300,7 +328,7 @@ class DataUiManager:
                     ui_dict = {'data_name': dt['name'] + '-' + v_name}
                     if True:
                         ui_dict['lcd'] = (lcd_idx, j)
-                        ui_dict['lcd_label_name'] = v_name + ' '  # 加空格是为了调整布局
+                        ui_dict['lcd_label_name'] = v_name + '  '  # 加空格是为了调整布局
                     if True:
                         ui_dict['chart_time'] = chart_time_idx
                         ui_dict['chart_time_locate'] = [0, chart_time_idx]
@@ -319,7 +347,7 @@ class DataUiManager:
                 ui_dict = {'data_name': dt['name']}
                 if True:
                     ui_dict['lcd'] = (int(lcd_idx + scalar_idx / 3), scalar_idx % 3)
-                    ui_dict['lcd_label_name'] = dt['name'] + ' '  # 加空格是为了调整布局
+                    ui_dict['lcd_label_name'] = dt['name'] + '  '  # 加空格是为了调整布局
                 if True:
                     ui_dict['chart_time'] = chart_time_idx
                     ui_dict['chart_time_locate'] = [0, chart_time_idx]
