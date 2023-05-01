@@ -14,6 +14,8 @@ from qt_material import apply_stylesheet, QtStyleTools
 from data_ui.data_ui_manager import DataUiManager
 from ports import PortManager
 from console.console_manager import ConsoleManager
+from data_saver.data_saver import DataSaver
+
 
 if hasattr(Qt, 'AA_ShareOpenGLContexts'):
     try:
@@ -53,6 +55,7 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
     def __init__(self):
         """Constructor"""
         super().__init__()
+        self.data_saver = None
         self.console_manager = None
         self.data_ui_manager = None
         self.main = uic.loadUi('main_window.ui', self)
@@ -99,8 +102,10 @@ class RuntimeStylesheets(QMainWindow, QtStyleTools):
                 tool_button.minimum_width = 150
 
     def init_widgets(self):
+        # 顺序不可变
         self.console_manager = ConsoleManager(self)
-        self.port_manager = PortManager(self, self.console_manager)
+        self.data_saver = DataSaver(self)
+        self.port_manager = PortManager(self)
         self.data_ui_manager = DataUiManager(self, self.port_manager)
 
         # 生成具有一定周期性的随机序列

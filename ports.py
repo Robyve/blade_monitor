@@ -10,14 +10,14 @@ import time
 
 import serial
 import serial.tools.list_ports
-from PyQt5 import Qt, QtGui, QtCore
+from PyQt5 import QtCore
 from PyQt5.QtCore import QThread, QObject, QTimer, pyqtSignal
 from PyQt5.QtGui import QPixmap
 
-import console.console_manager as console_manager
-from console.console_manager import ConsoleName
+from console.console_manager import ConsoleManager, ConsoleName
 from sound import sound
 from sound.sound import SoundType
+from data_saver.data_saver import DataSaver
 
 
 class SerialQThread(QThread):
@@ -56,10 +56,8 @@ class SerialQThread(QThread):
 class PortManager(QObject):
     data_ready_signal = pyqtSignal(str)
 
-    def __init__(self, ui, _console_manager):
+    def __init__(self, ui):
         super().__init__()
-        self.console_manager = _console_manager
-
         self.collect_dtime = 0.08  # 采样频率
 
         self.curr_serial = None  # 串口实例
@@ -109,7 +107,7 @@ class PortManager(QObject):
             except Exception as e:
                 print(e)
                 self._set_com_info_label(f'连接失败: {self.curr_port}', 'main', 'warning')
-                self.console_manager.print_on(ConsoleName.PORT, f'连接失败: {self.curr_port}')
+                ConsoleManager.print_on(ConsoleName.PORT, f'连接失败: {self.curr_port}', 'Error')
                 return
             self.com_btn.setText('断开')
             self.open_status = 'opened'
@@ -121,12 +119,13 @@ class PortManager(QObject):
             self.serialthread.start()
 
             self._set_com_info_label(f'启动串口: {self.curr_port}', 'main', 'ok')
-            self.console_manager.print_on(ConsoleName.PORT, f'启动串口: {self.curr_port}')
+            ConsoleManager.print_on(ConsoleName.PORT, f'启动串口: {self.curr_port}')
             sound.play_sound(SoundType.PORT_OPEN)
 
+            DataSaver.start_save()
         else:
             self.serialthread.stop()
-            self.console_manager.print_on(ConsoleName.PORT, f'串口{self.curr_port}即将关闭')
+            ConsoleManager.print_on(ConsoleName.PORT, f'串口{self.curr_port}即将关闭')
             self.curr_serial.close()
             self.curr_serial = None
             self.com_btn.setText('启动')
@@ -135,7 +134,9 @@ class PortManager(QObject):
             self.com_combo.setEnabled(True)
             self.baud_rate_combo.setEnabled(True)
             self.serialthread.stop()
-            self.console_manager.print_on(ConsoleName.PORT, f'串口已关闭')
+            ConsoleManager.print_on(ConsoleName.PORT, f'串口已关闭')
+
+            DataSaver.finish_save()
 
     def update_serial_ports(self, is_init=False):
         new_port_list = list(serial.tools.list_ports.comports())
@@ -155,7 +156,7 @@ class PortManager(QObject):
                 self.new_connect_info_timer.timeout.connect(
                     lambda: self._set_com_info_label(f'', 'new_connect', ''))
                 self._set_com_info_label(f'{new_com}', 'new_connect', 'info')
-                self.console_manager.print_on(ConsoleName.PORT, f'新串口{new_com}')
+                ConsoleManager.print_on(ConsoleName.PORT, f'新串口{new_com}')
                 sound.play_sound(SoundType.PORT_NEW)
                 self.new_connect_info_timer.start(1500)
 
@@ -175,7 +176,7 @@ class PortManager(QObject):
                 self.com_btn.setText('启动')
 
                 self._set_com_info_label('与串口的连接意外断开', 'main', 'warning')
-                self.console_manager.print_on(ConsoleName.PORT, '与串口的连接意外断开')
+                ConsoleManager.print_on(ConsoleName.PORT, '与串口的连接意外断开', 'Error')
                 sound.play_sound(SoundType.PORT_ACCIDENT_DISCONNECT)
 
                 self.open_status = 'closed'
@@ -192,7 +193,7 @@ class PortManager(QObject):
             message = bytes.fromhex(message)
             self.curr_serial.write(message)
             print(f'发送到串口: {message}')
-            self.console_manager.print_on(ConsoleName.PORT, f'发送到串口: {message}')
+            ConsoleManager.print_on(ConsoleName.PORT, f'发送到串口: {message}')
 
     def _set_com_info_label(self, text, to_ui='main', icon=None):
         if to_ui == 'main':

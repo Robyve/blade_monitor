@@ -8,25 +8,14 @@
 
 import numpy as np
 from PyQt5.QtCore import pyqtSignal, QThread, QSize
-from PyQt5.QtGui import QFont, QPalette
+from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QCheckBox, QTreeWidgetItem, QTreeWidget
 
 import ports
 from data_ui import data_type_db
 
 from data_ui.chart_manager import *
-
-
-class FftQThread(QThread):
-    def __init__(self, chart_freq, data):
-        super().__init__()
-        self.chart_freq = chart_freq
-        self.data = data
-
-    def run(self):
-        signal = self.data
-        fft_x, fft_y = DataUiManager.calc_fft(signal)
-        set_chart_datas(self.chart_freq, fft_x, fft_y)
+from data_saver.data_saver import DataSaver
 
 
 class MyTreeWidget(QTreeWidget):
@@ -51,7 +40,7 @@ class DataUiManager:
                  port_manager: ports.PortManager):
         self.all_data_type_tree_widget = None
         self.DATA_BUFFER_MAX_SIZE = 400
-        self.FFT_COLLECT_RANGE = 20  # fft采样范围，属于少于该范围不进行fft
+        self.FFT_COLLECT_RANGE = 200  # fft采样范围，属于少于该范围不进行fft
         self.port_manager = port_manager
         self.ui = ui
         self.lcd_top_labels_ui = [
@@ -59,18 +48,24 @@ class DataUiManager:
             ui.data2_label,
             ui.data3_label,
             ui.data4_label,
+            ui.data5_label,
+            ui.data6_label,
         ]
         self.lcd_3_ui = [
             [ui.x1_lcd, ui.y1_lcd, ui.z1_lcd],
             [ui.x2_lcd, ui.y2_lcd, ui.z2_lcd],
             [ui.x3_lcd, ui.y3_lcd, ui.z3_lcd],
             [ui.x4_lcd, ui.y4_lcd, ui.z4_lcd],
+            [ui.x5_lcd, ui.y5_lcd, ui.z5_lcd],
+            [ui.x6_lcd, ui.y6_lcd, ui.z6_lcd],
         ]
         self.lcd_3_sub_label_ui = [
             [ui.x1_sub_label_lcd, ui.y1_sub_label_lcd, ui.z1_sub_label_lcd],
             [ui.x2_sub_label_lcd, ui.y2_sub_label_lcd, ui.z2_sub_label_lcd],
             [ui.x3_sub_label_lcd, ui.y3_sub_label_lcd, ui.z3_sub_label_lcd],
             [ui.x4_sub_label_lcd, ui.y4_sub_label_lcd, ui.z4_sub_label_lcd],
+            [ui.x5_sub_label_lcd, ui.y5_sub_label_lcd, ui.z5_sub_label_lcd],
+            [ui.x6_sub_label_lcd, ui.y6_sub_label_lcd, ui.z6_sub_label_lcd],
         ]
         self.charts_time = None
         self.charts_freq = None
@@ -89,13 +84,18 @@ class DataUiManager:
         self.on_push_data_type_update_btn()
 
         self.DATA_TYPE_MAX_NUM = 3 * len(self.lcd_3_ui)
-        self.data_type_select_counter = 0   # data_type选择计数器，防止选取过多，布局盛不下
+        self.data_type_select_counter = 0  # data_type选择计数器，防止选取过多，布局盛不下
+        self.is_vector_zip = False  # 将同一组向量作为多个系列，显示在一个chart中
+
         self._bound_data_and_ui()
         self._init_data_type_tree()
         self.ui.data_type_select_counter_label.setText(
             f'已选取({self.data_type_select_counter}/{self.DATA_TYPE_MAX_NUM})个数据项')
 
         ui.data_type_update_btn.clicked.connect(self.on_push_data_type_update_btn)
+
+        ui.data_type_btn_layout.setAlignment(Qt.AlignTop)
+        ui.data_type_btn_layout.setAlignment(Qt.AlignTop)
 
     def _bound_data_and_ui(self):
         """
@@ -132,13 +132,19 @@ class DataUiManager:
         self._ui_bounder.clear()
         chart_time_locate = []
         chart_time_names = []
+        chart_time_zip = []
+        chart_time_mother_names = []
+
         chart_freq_locate = []
         chart_freq_names = []
+        chart_freq_zip = []
+        chart_freq_mother_names = []
         for i, ud in enumerate(self.ui_dict_list):
-            ls = [ud.get('lcd'),
-                  ud.get('chart_time'),
-                  ud.get('chart_freq'),
-                  ]
+            # 动态区
+            dynamic_ls = [ud.get('lcd'),
+                          [ud.get('chart_time'), ud.get('chart_time_zip')],
+                          [ud.get('chart_freq'), ud.get('chart_freq_zip')]
+                          ]
             if ud.get('lcd') is not None:
                 lcd = ud.get('lcd')
                 c = ud.get('lcd_label_name')
@@ -151,21 +157,60 @@ class DataUiManager:
                 c = ud.get('chart_time_locate')
                 assert c is not None
                 chart_time_locate.append(c)
+
+                c = ud.get('chart_time_zip')
+                assert c is not None
+                chart_time_zip.append(c)
+
                 n = ud.get('data_name')
                 assert n is not None
                 chart_time_names.append(n)
+
+                n = ud.get('data_mother_name')
+                assert n is not None
+                chart_time_mother_names.append(n)
             if ud.get('chart_freq') is not None:
                 c = ud.get('chart_freq_locate')
                 assert c is not None
                 chart_freq_locate.append(c)
+
+                c = ud.get('chart_freq_zip')
+                assert c is not None
+                chart_freq_zip.append(c)
+
                 n = ud.get('data_name')
                 assert n is not None
                 chart_freq_names.append(n)
-            self._ui_bounder.append(ls)
+
+                n = ud.get('data_mother_name')
+                assert n is not None
+                chart_freq_mother_names.append(n)
+            self._ui_bounder.append(dynamic_ls)
+
+        # 初始化缓存区
         self.data_buffer_width = len(self.ui_dict_list)
         self.data_buffer = np.empty((0, len(self.ui_dict_list)))
-        self.charts_time = init_charts(self.ui.graph_tab_time_scrollArea, chart_time_locate, chart_time_names)
-        self.charts_freq = init_charts(self.ui.graph_tab_freq_scrollArea, chart_freq_locate, chart_freq_names)
+
+        self.is_vector_zip = self.ui.vector_zip_checkBox.isChecked()
+        if self.is_vector_zip:
+            self.charts_time = init_mult_series_charts(
+                self.ui.graph_tab_time_scrollArea,
+                chart_time_locate,
+                chart_time_zip,
+                chart_time_mother_names,
+                chart_time_names
+            )
+            self.charts_freq = init_mult_series_charts(
+                self.ui.graph_tab_freq_scrollArea,
+                chart_freq_locate,
+                chart_freq_zip,
+                chart_freq_mother_names,
+                chart_freq_names
+            )
+            # TODO
+        else:
+            self.charts_time = init_charts(self.ui.graph_tab_time_scrollArea, chart_time_locate, chart_time_names)
+            self.charts_freq = init_charts(self.ui.graph_tab_freq_scrollArea, chart_freq_locate, chart_freq_names)
 
     def add_datas(self, datas: list, end_of_group):
         """
@@ -180,30 +225,31 @@ class DataUiManager:
                 if ui_info is None:
                     continue
                 if j == 0 and self.ui.tab_right.currentIndex() == 0:  # 懒加载
-                    self.lcd_3_ui[int(ui_info[0])][ui_info[1]].display(d)
+                    self.lcd_3_ui[int(ui_info[0])][ui_info[1]].display('{:.2f}'.format(d))
 
                 if j == 1:
-                    add_single_chart_data(self.charts_time[ui_info], d)
+                    is_lazy = self.ui.tab_right.currentIndex() == 1  # 懒加载
+                    if self.is_vector_zip:
+                        idx = ui_info[1]
+                        add_single_chart_data(self.charts_time[idx[0]], d, idx[1], is_lazy)
+                    else:
+                        add_single_chart_data(self.charts_time[ui_info[0]], d, 0, is_lazy)
 
                 if j == 2 and end_of_group:
+                    self.ui.fft_info_label.setText('')
+                    is_lazy = self.ui.tab_right.currentIndex() == 2  # 懒加载
                     if self.data_buffer.shape[0] > self.FFT_COLLECT_RANGE:
                         signal = self.data_buffer[len(self.data_buffer) - self.FFT_COLLECT_RANGE:, i]
                         fft_x, fft_y = self.calc_fft(signal)
-                        if self.ui.tab_right.currentIndex() == 2:  # 懒加载
-                            set_chart_datas(self.charts_freq[ui_info], fft_x, fft_y)
+                        if self.is_vector_zip:
+                            idx = ui_info[1]
+                            set_chart_datas(self.charts_freq[idx[0]], idx[1], fft_x, fft_y, is_lazy)
+                        else:
+                            set_chart_datas(self.charts_freq[ui_info[0]], 0, fft_x, fft_y, is_lazy)
+                    else:
+                        self.ui.fft_info_label.setText(
+                            f'正在收集足够的数据用于FFT变换，请稍后...{self.data_buffer.shape[0]}/{self.FFT_COLLECT_RANGE}')
             i += 1
-
-    def add_3d_datas(self, lcd_3_idx: int, to_chart_list, chart_idxs: list[int], datas):
-        assert len(chart_idxs) == len(datas)
-        for lcd, d in zip(self.lcd_3_ui[lcd_3_idx], datas):
-            lcd.display(d)
-        for idx, d in zip(chart_idxs, datas):
-            add_single_chart_data(to_chart_list[idx], d)
-
-    @staticmethod
-    def add_data_to_charts(to_chart_list, chart_idxs: list[int], datas):
-        for idx, d in zip(chart_idxs, datas):
-            add_single_chart_data(to_chart_list[idx], d)
 
     def convert_data_from_port(self, data: str):
         try:
@@ -227,7 +273,7 @@ class DataUiManager:
     @staticmethod
     def calc_fft(signal):
         n = len(signal)
-        Fs = 5.  # 采样频率，TODO 统一
+        Fs = 200  # 采样频率，TODO 统一
         fft_result = np.abs(np.fft.rfft(signal))
         freqs = np.fft.rfftfreq(n, d=1. / Fs)
         return freqs, fft_result
@@ -245,6 +291,7 @@ class DataUiManager:
         # TODO 优化缓存清理
         if len(self.data_buffer) > self.DATA_BUFFER_MAX_SIZE:
             self.data_buffer = self.data_buffer[-self.FFT_COLLECT_RANGE:]
+            DataSaver.save_data(self.data_buffer)
 
     def _init_data_type_tree(self):
         if self.all_data_type_tree_widget:
@@ -329,43 +376,53 @@ class DataUiManager:
             self.ui_label_list_static.append((self.lcd_top_labels_ui[i], '标量'))
             i += 1
             scalar_count -= 3
-        scalar_idx = 0  # 标量
-        vector_idx = 0  # 矢量
-        lcd_idx = 0
+        scalar_idx = 0
         chart_time_idx = 0
         chart_freq_idx = 0
+        chart_time_zip_idx = 0
+        chart_freq_zip_idx = 0
+        lcd_idx = 0
         for dt in self.all_data_type_list:
             if dt['is_v'] == 'V':  # 只有矢量在此初始化label名称，标量送入标量区内
                 for j, v_name in enumerate(['X', 'Y', 'Z']):
-                    ui_dict = {'data_name': dt['name'] + '-' + v_name}
+                    ui_dict = {
+                        'data_name': dt['name'] + '-' + v_name,
+                        'data_mother_name': dt['name']}
                     if True:
                         ui_dict['lcd'] = (lcd_idx, j)
                         ui_dict['lcd_label_name'] = v_name + '  '  # 加空格是为了调整布局
                     if True:
                         ui_dict['chart_time'] = chart_time_idx
+                        ui_dict['chart_time_zip'] = [chart_time_zip_idx, j]
                         ui_dict['chart_time_locate'] = [0, chart_time_idx]
                         chart_time_idx += 1
-                    if dt['show_freq']:
+                    if dt.get('show_freq'):
                         ui_dict['chart_freq'] = chart_freq_idx
+                        ui_dict['chart_freq_zip'] = [chart_freq_zip_idx, j]
                         ui_dict['chart_freq_locate'] = [0, chart_freq_idx]
                         chart_freq_idx += 1
 
                     self.ui_dict_list.append(ui_dict)
-                    vector_idx += 1
+                chart_time_zip_idx += 1
+                if dt.get('show_freq'):
+                    chart_freq_zip_idx += 1
                 if True:
                     lcd_idx += 1
 
             else:
-                ui_dict = {'data_name': dt['name']}
+                ui_dict = {'data_name': dt['name'],
+                           'data_mother_name': dt['name']}
                 if True:
                     ui_dict['lcd'] = (int(lcd_idx + scalar_idx / 3), scalar_idx % 3)
                     ui_dict['lcd_label_name'] = dt['name'] + '  '  # 加空格是为了调整布局
                 if True:
                     ui_dict['chart_time'] = chart_time_idx
+                    ui_dict['chart_time_zip'] = [chart_time_zip_idx + scalar_idx, 0]
                     ui_dict['chart_time_locate'] = [0, chart_time_idx]
                     chart_time_idx += 1
-                if dt['show_freq']:
+                if dt.get('show_freq'):
                     ui_dict['chart_freq'] = chart_freq_idx
+                    ui_dict['chart_time_zip'] = [chart_time_zip_idx + scalar_idx, 0]
                     ui_dict['chart_freq_locate'] = [0, chart_freq_idx]
                     chart_freq_idx += 1
 
